@@ -60,9 +60,8 @@ console.log(typeof PersonClass.prototype.sayName); // "function"
 > 函数有函数声明和函数表达式，类的创建同样，可以用class声明，也可以用class表达式来创建
 
 1、匿名类表达式
+
 ``` js
-
-
 let PersonClass = class{
     constructor(name){
         this.name=name;
@@ -87,7 +86,6 @@ console.log(typeof PersonClass.prototype.sayName)  //function
 2、具名类表达式
 
 ``` js
-
 let PersonClass = class PersonClass2{
     constructor(name){
         this.name=name;
@@ -152,6 +150,7 @@ console.log(p1 instanceof Object);  //true
 3. class定义类，类的方法是不可枚举的，构造函数定义类只有通过`Object.defineProperty()`才能将方法改为不可枚举。
 4. class定义类，类的所有方法内部都没有`[[Construct]]`，所以使用new来调用它们会报错。
 5. 调用类构造器时不使用`new`，会报错。
+
 ``` js
     class PersonClass{
         constructor(name){
@@ -166,6 +165,7 @@ console.log(p1 instanceof Object);  //true
     PersonClass('xiaoming');
 ```
 6. 试图在类的方法内部重写类名,会抛出错误。
+
 ``` js
 class Foo{
     constructor(){
@@ -198,6 +198,7 @@ obj.sayHi();  //'Hi!'
 
 
 > 立即实例化类
+
 ``` js
     let person = new class{
         constructor(name){
@@ -212,6 +213,7 @@ obj.sayHi();  //'Hi!'
 ```
 
 #### 2、可以创建访问器属性 
+
 ``` js
 class CustomHTMLElement{
     constructor(element){
@@ -239,6 +241,7 @@ console.log(descriptor);
 #### 3、成员名称可以通过计算而来
 
 普通原型方法
+
 ``` js
 let methodName='sayName';
 class PersonClass{
@@ -255,6 +258,7 @@ console.log(person.sayName());
 ```
 
 访问器属性
+
 ``` js
 let propName='html';
 
@@ -301,6 +305,7 @@ console.log(person.sayName());  // 'xiaoming'
 ```
 
 `es6`
+
 ``` js
     class Person{
         constructor(name){
@@ -322,6 +327,7 @@ console.log(person.sayName());  // 'xiaoming'
 ### 类的继承
 
 `es5`及以前
+
 ``` js
 function Rectangle(length,width){
     this.length=length;
@@ -353,6 +359,7 @@ console.log(square instanceof Rectangle);
 ```
 
 `es6`
+
 ``` js
 class Rectangle{
     constructor(length,width){
@@ -534,6 +541,7 @@ console.log(square.getArea());
 ```
 
 #### 继承静态成员
+
 ``` js
     class Rectangle{
         constructor(length,width){
@@ -585,6 +593,7 @@ console.log(square instanceof Rectangle);  //true
 
 
 > `extends`后面可以接受任意类型的表达式
+
 ``` js
 function Rectangle(length,width){
     this.length=length;
@@ -644,6 +653,7 @@ console.log(square.serialize());  //"{"length":3,"width":3}"
 
 
 内置数组的行为
+
 ``` js
 var colors=[];
 colors[0]='red';
@@ -656,6 +666,7 @@ console.log(colors[0]);  // undefined
 
 
 es5及以前继承数组
+
 ``` js
 function MyArray(){
     Array.apply(this,arguments);
@@ -679,6 +690,7 @@ console.log(colors[0])  //'red'
 ```
 
 es6继承数组
+
 ``` js
     class MyArray extends Array{
         
