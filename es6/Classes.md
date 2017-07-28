@@ -706,6 +706,7 @@ console.log(subitems instanceof MyArray);  //true
 ### 在类构造器中使用`new.target`
 
 > 在构造器中`new.target`并不总是相同的
+
 ``` js
 class Rectangle{
     construtor(length,width){
