@@ -278,10 +278,29 @@ class CustomHTMLElement{
 }
 
 let el=new CustomHTMLElement(oDiv);
-console.log(el.html);
+console.log(el.html);  // 'hello'
 ```
 
 #### 4、生成器方法
+
+类的原型方法也可以变成生成器方法
+
+``` js
+class MyClass{
+    *createIterator(){
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+}
+
+let mc=new MyClass();
+let iterator=mc.createIterator();
+
+for(let x of iterator){
+    console.log(x);
+}
+```
 
 #### 5、静态成员
 
