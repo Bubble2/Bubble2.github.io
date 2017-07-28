@@ -428,6 +428,7 @@ console.log(square.getArea())
 
 1. 只能在派生类中使用，即没有`extends`，就不能使用。
 2. 在构造器中，使用`this`必须在`super()`调用之后，因为`super()`负责初始化`this`的。
+
 ``` js
 class Rectangle{
     constructor(length,width){
@@ -457,6 +458,7 @@ console.log(square.sayName())
 ```
 
 3. 唯一能避免调用 super() 的办法，是从类构造器中返回一个对象。
+
 ``` js
 class Rectangle{
     constructor(length,width){
@@ -506,6 +508,7 @@ console.log(square.getArea());
 
 
 > 重写父类方法之后，任然可以用`super`来访问父类方法
+
 ``` js
 class Rectangle{
     constructor(length,width){
