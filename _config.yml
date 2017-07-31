@@ -1,13 +1,13 @@
 # Site settings
-title: STONE'S JOURNEY 
+title: Bubble'S Blog 
 header-img: img/post-bg-05.jpg
-email: 948869516@qq.com
-copyright_name: baoshi
+email: 460173474@qq.com
+copyright_name: guozhaodong
 description: "Coding and learning"
 baseurl: ""
 url: "http://yourdomain.com"
-github_username:  xubaoshi
-email_username:  948869516@qq.com
+github_username:  guozhaodong
+email_username:  460173474@qq.com
 
 # Google Analytics
 # To enable google analytics, uncomment below line with a valid Google Tracking ID
