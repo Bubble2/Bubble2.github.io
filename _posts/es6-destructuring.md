@@ -44,7 +44,7 @@ header-img: "img/destructuring.jpg"
 
     //以上三种方式都会报这个错误 Uncaught SyntaxError: Missing initializer in destructuring declaration
 ```
-![image](../assets/img/1500607155.jpg)
+![image](../img/es6-destructuring/1500607155.jpg)
 
 ### 
 
