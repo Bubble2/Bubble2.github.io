@@ -6,7 +6,7 @@ author:     "guozhaodong"
 header-img: "img/destructuring.jpg"
 ---
 
-# es6之Classes
+# es6之Classes.
 
 ### es5实现类的方式
 
