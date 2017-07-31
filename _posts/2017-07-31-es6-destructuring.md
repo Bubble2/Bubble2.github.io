@@ -3,7 +3,6 @@ layout:     post
 title:      "2017-07-31-es6-destructuring"
 date:       "2017-07-31 "
 author:     "guozhaodong"
-header-img: "img/destructuring.jpg"
 ---
 
 # es6之变量的解构赋值
