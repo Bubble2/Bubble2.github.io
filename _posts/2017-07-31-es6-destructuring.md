@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "es6-destructuring"
+title:      "2017-07-31-es6-destructuring"
 date:       "2017-07-31 "
 author:     "guozhaodong"
 header-img: "img/destructuring.jpg"

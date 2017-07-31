@@ -17,7 +17,7 @@ email_username:  460173474@qq.com
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
-paginate: 2
+paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
 gems: [jekyll-paginate, jekyll-feed]
