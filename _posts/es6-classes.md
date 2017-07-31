@@ -262,7 +262,7 @@ class PersonClass{
 }
 
 let person = new PersonClass('xiaoming');
-console.log(person.sayName());
+console.log(person.sayName());  //'xiaoming'
 ```
 
 访问器属性
@@ -308,6 +308,10 @@ let iterator=mc.createIterator();
 for(let x of iterator){
     console.log(x);
 }
+
+//1 
+//2
+//3
 ```
 
 #### 5、静态成员
@@ -334,20 +338,20 @@ console.log(person.sayName());  // 'xiaoming'
 `es6`
 
 ``` js
-    class Person{
-        constructor(name){
-            this.name=name;
-        }
-        sayName(){
-            console.log(this.name);
-        }
-        static create(name){
-            return new Person(name);
-        }
+class Person{
+    constructor(name){
+        this.name=name;
     }
+    sayName(){
+        console.log(this.name);
+    }
+    static create(name){
+        return new Person(name);
+    }
+}
 
-    let person = Person.create('xiaoming')
-    console.log(person.sayName()); //'xiaoming'
+let person = Person.create('xiaoming')
+console.log(person.sayName()); //'xiaoming'
 ```
 
 
@@ -379,9 +383,9 @@ Square.prototype=Object.create(Rectangle.prototype,{
 
 var square=new Square(3);
 
-console.log(square.getArea());
-console.log(square instanceof Square);
-console.log(square instanceof Rectangle);
+console.log(square.getArea());  // 9
+console.log(square instanceof Square); //true
+console.log(square instanceof Rectangle);  //true
 
 ```
 
@@ -408,9 +412,9 @@ class Square extends Rectangle{
 
 let square=new Square(3);
 
-console.log(square.getArea());
-console.log(square instanceof Square);
-console.log(square instanceof Rectangle);
+console.log(square.getArea());  //9
+console.log(square instanceof Square); //true
+console.log(square instanceof Rectangle);  //true
 ```
 
 > 如果派生类指定了构造器`constructor(){}`，那么就必须调用`super()`，否则会报错。继承时如果没有指定构造器`constructor(){}`，那么`super()`会被自动调用,并且会使用创建实例时传入的所有参数。
@@ -454,7 +458,7 @@ class Square extends Rectangle{
 }
 
 let square = new Square(3,3);  
-console.log(square.getArea())
+console.log(square.getArea())  // 9
 
 ```
 
@@ -476,16 +480,17 @@ class Rectangle{
 
 class Square extends Rectangle{
    constructor(length,name){
-       //此处颠倒下顺序就会报错
-       super(length,length);
+       //此处颠倒下顺序就可以了
        this.name=name;
+       super(length,length);
+       
    }
    sayName(){
        console.log(this.name)
    }
 }
 
-let square = new Square(3,'square')
+let square = new Square(3,'square')  // 报错
 console.log(square.getArea())
 console.log(square.sayName())
 
@@ -537,7 +542,7 @@ class Square extends Rectangle{
 }
 
 let square = new Square(3);
-console.log(square.getArea());
+console.log(square.getArea());  // 9
 ```
 
 
@@ -564,34 +569,34 @@ class Square extends Rectangle{
 }
 
 let square = new Square(3);
-console.log(square.getArea());
+console.log(square.getArea()); //9
 ```
 
 #### 继承静态成员
 
 ``` js
-    class Rectangle{
-        constructor(length,width){
-            this.length=length;
-            this.width=width;
-        }
-        getArea(){
-            return this.length*this.width;
-        }
-        static create(length,width){
-            return new Rectangle(length,width);
-        }
+class Rectangle{
+    constructor(length,width){
+        this.length=length;
+        this.width=width;
     }
+    getArea(){
+        return this.length*this.width;
+    }
+    static create(length,width){
+        return new Rectangle(length,width);
+    }
+}
 
-    class Square extends Rectangle{
-        constructor(length){
-            super(length,length)
-        }
+class Square extends Rectangle{
+    constructor(length){
+        super(length,length)
     }
-    let rect = Square.create(3,4);
-    console.log(rect instanceof Rectangle);   //true
-    console.log(rect.getArea());    //12
-    console.log(rect instanceof Square);  //false
+}
+let rect = Square.create(3,4);
+console.log(rect instanceof Rectangle);   //true
+console.log(rect.getArea());    //12
+console.log(rect instanceof Square);  //false
 ```
 
 #### 从表达式中派生类
@@ -751,7 +756,7 @@ console.log(subitems instanceof MyArray);  //true
 
 ``` js
 class Rectangle{
-    construtor(length,width){
+    constructor(length,width){
         console.log(new.target === Rectangle);
         this.length=length;
         this.width=width;
@@ -763,7 +768,7 @@ let rect= new Rectangle(3,4);  //true
 
 ``` js
 class Rectangle{
-    construtor(length,width){
+    constructor(length,width){
         console.log(new.target === Rectangle);
         this.length=length;
         this.width=width;
