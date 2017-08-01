@@ -218,6 +218,58 @@ add(1,1);  //2
 add(undefined,1); //error
 ```
 
+### 箭头函数
+
+#### 根据参数个数来区分 
+
+只有一个参数
+
+``` js
+let oneParam = value => console.log(value);
+oneParam("oneParam")  //oneParam
+```
+
+多个参数或者没有参数
+
+``` js
+let multiParam = (value1,value2) => console.log(value1 + value2);
+multiParam(1,2);  //3
+
+let noParam=() => console.log("noParam");
+noParam();  //noParam
+```
+
+#### 根据函数体来区分
+
+函数体只有一条语句
+
+``` js
+let oneBody=value=> value+1;
+oneBody(2);  //3
+```
+
+函数体有多条语句
+
+``` js
+let multiBody = (isShow)=>{
+    if(isShow){
+        console.log("show body");
+    }
+}
+multiBody(true);  //"show body"
+```
+
+函数体是一个对象
+
+``` js
+let objBody = (value)=>(
+    {
+        value:value
+    }
+)
+objBody('hello').value  //"hello"
+```
+
 
 
 
