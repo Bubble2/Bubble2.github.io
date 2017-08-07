@@ -389,6 +389,8 @@ obj.displayName.call(obj2);
 // setTimeout
 // add event
 
+
+有点意思的东西
 ``` js
 var name="Arrow Function";
 let aFunc=()=>console.log(this.name);
@@ -401,6 +403,31 @@ let aFunc=()=>()=>2;
 aFunc()();
 //2
 ```
+
+### 其它
+
+name properties,主要是调试的时候定位name属性
+``` js
+function doSomething(){
+
+}
+var doAnotherThing = function(){
+
+}
+console.log(doSomething.name)  //doSomething
+console.log(doAnotherThing.name) //doAnotherThing 
+``` 
+
+``` js
+var doSomething=function(){
+
+}
+console.log(doSomething.bind().name) //"bound doSomething"
+console.log(new Function().name);   //anonymous
+```
+
+
+
 
 
 
