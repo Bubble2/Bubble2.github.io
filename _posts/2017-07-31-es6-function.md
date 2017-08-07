@@ -270,6 +270,137 @@ let objBody = (value)=>(
 objBody('hello').value  //"hello"
 ```
 
+#### 箭头函数的特性
+
+1、箭头函数没有prototype属性
+``` js
+//传统函数
+let cFunc = function(){
+    console.log("1");
+}
+console.log(cFunc.prototype); //Object {constructor: function}
+
+//箭头函数
+
+let aFunc = ()=> console.log("1");
+console.log(aFunc.prototype); //undefined
+```
+
+2、箭头函数不绑定this，this的值由复函数作用域中的this决定
+
+``` js
+//传统函数
+let cFunc=function(){
+    console.log(this.name);
+}
+cFunc.apply({
+    name:"Arrow Function"
+})
+
+//Arrow Function
+
+//箭头函数
+let aFunc = ()=>console.log(this.name);
+aFunc.apply({
+    name:"Arrow Function"
+});
+
+//空，this指向window
+```
+
+3、箭头函数不绑定arguments
+
+``` js
+//传统函数
+let cFunc =function(){
+    console.log(arguments);
+}
+cFunc("test");
+//["test", callee: function, Symbol(Symbol.iterator): function]
+
+//箭头函数
+let aFunc=()=>console.log(arguments);
+aFunc("test")
+
+//报错
+```
+
+4、箭头函数不能使用new关键词来实例化
+``` js
+let aFunc =() => console.log("1");
+new aFunc();
+//Uncaught TypeError: aFunc is not a constructor
+```
+
+#### 如何理解this的指向
+
+``` js
+let cFunc=function(){
+    this.name="a";
+    let bFunc=function(){
+        this.name="b";
+    }
+    bFunc.prototype.displayName =() => console.log(this.name);
+    new bFunc().displayName();
+}
+new cFunc();
+
+//a
+//cFunc {name: "a"}
+```
+
+``` js
+let obj={
+    name:"obj name",
+    displayName: ()=>console.log(this.name)
+}
+obj.displayName();
+
+//空 ，this指向window
+```
+
+``` js
+let obj={
+    name:"obj name",
+    displayName:function(){
+        return (()=>console.log(this.name))()
+    }
+}
+obj.displayName();
+//obj name
+```
+
+``` js
+let obj={
+    name:"obj name",
+    displayName:function(){
+        return (()=>console.log(this.name))()
+    }
+}
+let obj2={
+    name:"obj2 name"
+}
+obj.displayName.call(obj2);
+//obj2 name
+```
+
+运用场景
+
+// setTimeout
+// add event
+
+``` js
+var name="Arrow Function";
+let aFunc=()=>console.log(this.name);
+aFunc();
+//Arrow Function，同时window.name在刷新页面的情况下也不会改变，除非关闭浏览器窗口
+```
+
+``` js
+let aFunc=()=>()=>2;
+aFunc()();
+//2
+```
 
 
 
