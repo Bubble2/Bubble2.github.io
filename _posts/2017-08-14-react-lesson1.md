@@ -272,7 +272,7 @@ const MyApp=()=>{
 ```
 
 
-除了`false`以外,0、""、null、undefined、NaN,都不会认为是假，即不会像原生`js`一样
+除了`false`以外,0、""、null、undefined、NaN,也会认为是假，其中0和NaN会输出自身。
 ``` jsx
  const isShow=true;
  const TopBar =()=>{
@@ -289,10 +289,73 @@ const MyApp=()=>{
  }
 ```
 
-
-
-
 ### React组件
+
+#### 组件的构建方法
+
+方法一、`React.createClass`
+
+最传统、也是兼容性最好的方法，`v0.14`版本之前，官方唯一指定的组件写法
+
+``` jsx
+const Button = React.createClass({
+  getDefaultProps(){
+    return {
+      color: 'blue',
+      text: 'Confirm'
+    }
+  },
+  render(){
+    const {color,text}=this.props;
+
+    return (
+      <button className={`btn btn-${color}`}>
+        <span>{text}</span>
+      </button>
+    );
+  }
+})
+```
+
+方法二、`ES6 classes`
+
+``` jsx
+class Button extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  static defaultProps={
+    color:'blue',
+    text:'Confirm'
+  }
+
+  render(){
+    const {color,text}=this.props;
+    return (
+      <button className={`btn btn-${color}`}>
+        <span>{text}</span>
+      </button>
+    )
+  }
+}
+```
+
+方法三、无状态函数
+
+使用无状态函数构建的是无状态的组件,这个是`v0.14`版本之后新增的方式，
+
+``` jsx
+function Button({color='blue',text='Confirm'}){
+  return (
+    <button className={`btn btn-${color}`}>
+      <span>{text}</span>
+    </button>
+  )
+}
+```
+
+这种方式创建的组件没有`state`和生命周期，组件本身就是上面两种方式的`render`方法，在合适的情况下,比较推荐使用这种方式去构建组件。以上两种方式在构建组件时不会创建实例，但是在调用的时候会创建实例，而无状态组件创建的时始终保持一个实例，避免了不必要的内存检查和内存分配,做到了内部优化。
 
 ### React数据流
 
