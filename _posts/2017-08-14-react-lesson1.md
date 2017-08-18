@@ -346,7 +346,11 @@ class Button extends React.Component{
 使用无状态函数构建的是无状态的组件,这个是`v0.14`版本之后新增的方式，
 
 ``` jsx
-function Button({color='blue',text='Confirm'}){
+function Button(){
+  getDefaultProps(){
+    color:'blue',
+    text:'Confirm'
+  }
   return (
     <button className={`btn btn-${color}`}>
       <span>{text}</span>
@@ -357,7 +361,60 @@ function Button({color='blue',text='Confirm'}){
 
 这种方式创建的组件没有`state`和生命周期，组件本身就是上面两种方式的`render`方法，在合适的情况下,比较推荐使用这种方式去构建组件。以上两种方式在构建组件时不会创建实例，但是在调用的时候会创建实例，而无状态组件创建的时始终保持一个实例，避免了不必要的内存检查和内存分配,做到了内部优化。
 
-### React数据流
+#### 组件的渲染
+
+``` jsx
+function Hello(props){
+  return <h1>Hello {props.name}!</h1>
+}
+
+ReactDOM.render(
+  <Hello name="xiaoming" />,
+  document.getElementById('root')
+)
+```
+
+### `React`数据流
+
+#### `props`
+
+##### 作用 
+
+父级向子级传递数据的一种方式。
+
+##### 特点
+<strong>只读的</strong>，组件内部不能修改自己的`props`
+
+
+#### `state`
+
+##### 作用
+将用户的交互行为反馈到用户界面,使得界面和数据保持一致。更新`state`会导致重新渲染用户界面,即用户界面会随着`state`的变化而变化。
+
+##### 特点
+它只存在于组件的内部,可以通过`setState()`方法来修改
+
+##### 使用注意点
+
+不要直接显示地更新组件的状态
+
+``` jsx
+//这种方式不会重新渲染组件
+this.state.msg="Hello";
+
+//应该使用这种方式
+this.setState({
+  msg:'Hello'
+})
+```
+
+状态的更新可能是异步的
+
+
+
+
+
+
 
 
 
