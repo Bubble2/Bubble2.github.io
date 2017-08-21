@@ -44,26 +44,26 @@ author:     "guozhaodong"
 
 ### jsx语法
 
-看起来很像`html`的东西
+> 一种JavaScript的语法扩展,看起来像模板语言，和我们平常写的html也十分相似，其实完全是js内部实现的。
 
 ``` jsx
 
 //传统的html标签
-<div>I am a div tag</div>
+const element = <div>I am a div tag</div>
 
 //组件
-<Hello>I am a React Component</Hello>
+const Hello = <Hello>I am a React Component</Hello>
 
 //标签嵌套
-<div>
-  <Hello color="blue">I am a nested tag</Hello>
-</div>
+const MyComponent=(
+  <div>
+    <Hello color="blue">I am a nested tag</Hello>
+  </div>
+)
 
 ```
 
-> 一种JavaScript的语法扩展,看起来像模板语言，和我们平常写的html也十分相似，其实完全是js内部实现的。
-
-如果不用jsx也是可以的，jsx本质上是为`React.createElement(Component,props,...children)`方法提供的语法糖。
+> 如果不用jsx也是可以的，jsx本质上是为`React.createElement(type,props,...children)`方法提供的语法糖。
 
 ``` js
 <ButtonComponent size="xl" color="primary">我是一个小小的按钮组件</ButtonComponent>
@@ -149,14 +149,23 @@ const BlueDatePicker = () => {
 
 ``` jsx
 const App = (
-  <Nav>
-    {/* 这是一个注释 */}
+  // 这个是一个单行注释
 
-    {/*<h1>h1</h1>*/}
+  /*这是一个多行注释
+  这是一个多行注释
+  这是一个多行注释
+  这是一个多行注释*/
+
+  <Nav>
+    {/*这是一个多行注释
+     这是一个多行注释
+     这是一个多行注释
+    这是一个多行注释*/}
 
     {
-    //<h1>h1</h1>
+    //这是一个单行注释
     }
+
   </Nav>
 )
 ```
@@ -187,7 +196,7 @@ DOM元素的属性是标准规范属性，但是有两个例外，分别是`clas
 ##### 传递布尔值
 
 ``` jsx
-//默认不传则为true，一下两种方式相等
+//默认不传则为true，以下两种方式相等
 <MyComponent foo></MyComponent>//不建议
 <MyComponent foo={true}></MyComponent>//建议
 
@@ -291,6 +300,8 @@ const MyApp=()=>{
 
 ### React组件
 
+`React`组件基本上由三部分组成，组件的构建方式、组件的属性状态、组件的生命周期
+
 #### 组件的构建方法
 
 方法一、`React.createClass`
@@ -359,7 +370,7 @@ function Button(){
 }
 ```
 
-这种方式创建的组件没有`state`和生命周期，组件本身就是上面两种方式的`render`方法，在合适的情况下,比较推荐使用这种方式去构建组件。以上两种方式在构建组件时不会创建实例，但是在调用的时候会创建实例，而无状态组件创建的时始终保持一个实例，避免了不必要的内存检查和内存分配,做到了内部优化。
+这种方式创建的组件没有`state`和生命周期，组件本身就是上面两种方式的`render`方法，在合适的情况下,比较推荐使用这种方式去构建组件。第一和第二两种方式在构建组件时不会创建实例，但是在调用的时候会创建实例，而无状态组件创建的时始终保持一个实例，避免了不必要的内存检查和内存分配,做到了内部优化。
 
 #### 组件的渲染
 
@@ -408,7 +419,44 @@ this.setState({
 })
 ```
 
-状态的更新可能是异步的
+状态的更新可能是异步的，`React`可以将多个`setState()`调用合并成一个调用来提高性能。因为`this.props`和`this.state`可能是异步更新的，所以不应该依赖这些值来计算下一个状态。
+
+
+``` jsx
+//错误的
+this.setState({
+  counter:this.state.counter + this.props.increase;
+})
+
+//正确的
+this.setState((prevState,props)=>({
+  counter:prevState.counter + props.increase;
+}))
+```
+
+`setState()`用法
+
+``` jsx
+setState(updater[,callback]);
+```
+
+第一个参数`updater`可以直接传递一个<strong>对象</strong>，也可以传递一个<strong>函数</strong>，但是这个函数还是得返回一个对象，同时这个函数会带两个参数，分别是前一个状态`prevState`和属性`props`。
+
+``` jsx
+//对象
+this.setState({
+  msg:'hello'
+})
+
+//函数
+this.setState((prevState,props)={
+  return {msh:'Hi'}
+})
+
+```
+
+第二个参数是一个可选的回调函数,其将会在`setState`执行完成同时组件被重新渲染之后执行。
+
 
 
 
