@@ -496,6 +496,90 @@ function Comment(props){
 
 <strong>只读的</strong>，组件内部不能修改自己的`props`
 
+#### 父组件的`state`通过`props`传给子组件
+
+``` jsx
+const ChildComponent = (props) =>{
+    return(
+        <div>{props.value}</div>
+    )
+}
+
+export class ParentComponent extends React.Component{
+    constructor(props){
+      super(props);
+      this.state={
+        value:0
+      }
+      this.handleChange=this.handleChange.bind(this);
+    }
+  
+    handleChange(e){
+      this.setState({
+        value:e.target.value
+      })
+    }
+  
+    render(){
+      return(
+        <div>
+          <input type="text" onChange={this.handleChange} />
+          <ChildComponent value={this.state.value} />
+        </div>
+      )
+    }
+}
+```
+
+#### 子组件改变父组件的state
+
+``` jsx
+class ChildComponent2 extends React.Component{
+    constructor(props){
+      super(props);
+      this.handleChange=this.handleChange.bind(this);
+    }
+  
+    handleChange(e){
+      this.props.onValueChange(e.target.value);
+    }
+  
+    render(){
+      return(
+        <div>
+          <input type="text" onChange={this.handleChange}/>
+        </div>
+      )
+    }
+}
+
+export class ParentComponent2 extends React.Component{
+    constructor(props){
+      super(props);
+      this.state={
+        value:0
+      }
+      this.changeHandle=this.changeHandle.bind(this);
+    }
+  
+    changeHandle(value){
+      this.setState({
+        value
+      })
+    }
+  
+    render(){
+      return(
+        <div>
+          <ChildComponent2 onValueChange={this.changeHandle} />
+          {this.state.value}
+        </div>
+      )
+    }
+}
+```
+
+
 ##### 使用`PropTypes`进行类型检查
 
 ``` jsx
