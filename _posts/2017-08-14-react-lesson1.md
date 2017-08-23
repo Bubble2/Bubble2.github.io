@@ -496,7 +496,7 @@ function Comment(props){
 
 <strong>只读的</strong>，组件内部不能修改自己的`props`
 
-#### 父组件的`state`通过`props`传给子组件
+##### 父组件改变子组件的`props`
 
 ``` jsx
 const ChildComponent = (props) =>{
@@ -531,7 +531,7 @@ export class ParentComponent extends React.Component{
 }
 ```
 
-#### 子组件改变父组件的state
+##### 子组件改变父组件的`state`
 
 ``` jsx
 class ChildComponent2 extends React.Component{
