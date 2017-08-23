@@ -179,7 +179,7 @@ const App = (
 
 #### 关于元素属性
 
-DOM元素的属性是标准规范属性，但是有两个例外，分别是`class` 和 `for`,这两个属性是`JacaScript`的关键词,我们将其转换,`class`=>`className`,`for`=>`htmlFor`。
+DOM元素的属性是标准规范属性，同时采用驼峰命名的方式来定义属性名称。但是有两个例外，分别是`class` 和 `for`,这两个属性是`JacaScript`的关键词,我们将其转换,`class`=>`className`,`for`=>`htmlFor`。
 
 组件元素的属性是完全自定义的，也可以理解为实现组件所需要的参数。
 
