@@ -65,7 +65,7 @@ const MyComponent=(
 
 > 如果不用jsx也是可以的，jsx本质上是为`React.createElement(type,props,...children)`方法提供的语法糖。
 
-``` js
+``` jsx
 <ButtonComponent size="xl" color="primary">我是一个小小的按钮组件</ButtonComponent>
 ```
 
