@@ -187,7 +187,7 @@ DOM元素的属性是标准规范属性，同时采用驼峰命名的方式来�
 
 ``` jsx
 <PropExpression title={1+2} />
-<PropExpression title={window.name?window.name:'window.name is null'}/>
+<PropExpression title={window.name?window.name:'window.name is null'} />
 ```
 
 ##### 传递字符串常量
@@ -199,7 +199,7 @@ DOM元素的属性是标准规范属性，同时采用驼峰命名的方式来�
 
 ```
 
-#### 传递组件
+##### 传递组件
 
 ``` jsx
 <PropComponent right={<PropComponentRight />} left={<PropComponentLeft />} />
