@@ -44,6 +44,9 @@ author:     "guozhaodong"
 
 ### jsx语法
 
+
+#### `JSX`是什么?
+
 > 一种JavaScript的语法扩展,看起来像模板语言，和我们平常写的html也十分相似，其实完全是js内部实现的。
 
 ``` jsx
@@ -63,7 +66,9 @@ const MyComponent=(
 
 ```
 
->`React`为了方便`View`层组件化，承载了构建`HTML`结构化页面的职责，说白了`JSX`就是为了创建元素方便、快捷、直白、易于理解和编码。
+#### 为什么会出现`JSX`?
+
+`React`为了方便`View`层组件化，承载了构建`HTML`结构化页面的职责，说白了`JSX`就是为了创建元素方便、快捷、直白。
 
 > 如果不用jsx也是可以的，jsx本质上是为`React.createElement(type,props,...children)`方法提供的语法糖。
 
