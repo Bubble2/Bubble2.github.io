@@ -46,7 +46,7 @@ author:     "guozhaodong"
 
 > 一种JavaScript的语法扩展,看起来像模板语言，和我们平常写的html也十分相似，其实完全是js内部实现的。
 
-``` jsx
+``` js
 
 //传统的html标签
 const element = <div>I am a div tag</div>
