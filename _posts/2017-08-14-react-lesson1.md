@@ -63,6 +63,8 @@ const MyComponent=(
 
 ```
 
+>`React`为了方便`View`层组件化，承载了构建`HTML`结构化页面的职责，说白了`JSX`就是为了创建元素方便、快捷、直白、易于理解和编码。
+
 > 如果不用jsx也是可以的，jsx本质上是为`React.createElement(type,props,...children)`方法提供的语法糖。
 
 ``` jsx
