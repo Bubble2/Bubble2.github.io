@@ -192,6 +192,12 @@ DOM元素的属性是标准规范属性，但是有两个例外，分别是`clas
 
 ```
 
+#### 传递组件
+
+``` jsx
+<PropComponent right={<PropComponentRight />} left={<PropComponentLeft />} />
+```
+
 ##### 传递布尔值
 
 ``` jsx
@@ -387,9 +393,11 @@ function SingleComponent(props){
 
 function CombineComponent(){
   return(
-    <SingleComponent name='第一个' />
-    <SingleComponent name='第二个' />
-    <SingleComponent name='第三个' />
+    <div>
+      <SingleComponent name='第一个' />
+      <SingleComponent name='第二个' />
+      <SingleComponent name='第三个' />
+    </div>
   )
 }
 
@@ -481,6 +489,21 @@ function Comment(props){
 
 <strong>只读的</strong>，组件内部不能修改自己的`props`
 
+##### 使用`PropTypes`进行类型检查
+
+``` jsx
+import PropTypes from 'prop-types';
+
+const PropTypesComponent = (props) =>{
+  return(
+    <div>{props.num}</div>
+  )
+}
+
+PropTypesComponent.propTypes={
+  num : PropTypes.number
+}
+```
 
 #### `state`
 
