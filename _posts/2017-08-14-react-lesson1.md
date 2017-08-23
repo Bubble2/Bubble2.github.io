@@ -130,16 +130,16 @@ const element=(
 ``` jsx
 import React from 'react';
 
-const MyComponents = {
-  DatePicker(props){
+const NameSpaceComponent = {
+  DatePicker(){
     return(
-      <div>This is a {props.color} Datepicker!</div>
+      <div>This is a Datepicker!</div>
     )
   }
 }
 
 const BlueDatePicker = () => {
-  return <MyComponents.DatePicker color="blue" />
+  return <NameSpaceComponent.DatePicker />
 }
 ```
 
@@ -156,7 +156,7 @@ const App = (
   这是一个多行注释
   这是一个多行注释*/
 
-  <Nav>
+  <div>
     {/*这是一个多行注释
      这是一个多行注释
      这是一个多行注释
@@ -166,7 +166,7 @@ const App = (
     //这是一个单行注释
     }
 
-  </Nav>
+  </div>
 )
 ```
 
@@ -179,17 +179,16 @@ DOM元素的属性是标准规范属性，但是有两个例外，分别是`clas
 ##### 传递`JavaScript`表达式
 
 ``` jsx
-<MyComponent foo={1+2}></MyComponent>
-
-<MyComponent foo={window.name?1:2}></MyComponent>
+<PropExpression title={1+2} />
+<PropExpression title={window.name?window.name:'window.name is null'}/>
 ```
 
 ##### 传递字符串常量
 
 ``` jsx
 //下面两种方式是相等的
-<MyComponent msg="hello"></MyComponent>
-<MyComponent msg={"hello"}></MyComponent>
+<PropString msg="hello1" />
+<PropString msg={"hello2"} />
 
 ```
 
@@ -197,30 +196,30 @@ DOM元素的属性是标准规范属性，但是有两个例外，分别是`clas
 
 ``` jsx
 //默认不传则为true，以下两种方式相等
-<MyComponent foo></MyComponent>//不建议
-<MyComponent foo={true}></MyComponent>//建议
+<PropBool msg />//不建议
+<PropBool msg={true} />//建议
 
 ```
 
 ##### 扩展属性
 
 ``` jsx
-const App=(props)=>{
-  return(
+const PropSpread = (props) => {
+  return (
     <div>
-      <p>{this.props.title}</p>
-      <p>{this.props.name}</p>
+        <p>{props.title}</p>
+        <p>{props.name}</p>
     </div>
   )
 }
 
 const MyApp=()=>{
   const obj = {
-    title:'I am title',
-    name:'I am name'
+      title:'I am title',
+      name:'I am name'
   }
   return(
-    <App {...obj}/>
+      <PropSpread {...obj} />
   )
 }
 ```
@@ -230,26 +229,24 @@ const MyApp=()=>{
 ##### 可以接受字符串常量
 
 ``` jsx
-<MyComponent>Hello</MyComponent>
+<ChildString>I am ChildString's children</ChildString>
 ```
 
 ##### 可以接受子组件
 
 ``` jsx
-<MyComponent>
-  <MyFirstComponent />
-  <MySecondComponent />
-</MyComponent>
+<ChildComponent>
+    <FirstChild></FirstChild>
+    <SecondChild></SecondChild>
+</ChildComponent>
 ```
 
 ##### 可以接受`JavaScript`表达式
 
 ``` jsx
-<MyComponent>{'Hello'}</MyComponent>
-
-<MyComponent>{1+2}</MyComponent>
-
-<MyComponent>{window.name?<MyFirstComponent />:<MySecondComponent />}</MyComponent>
+<ChildExpression>{'Hello'}</ChildExpression>
+<ChildExpression>{1+2}</ChildExpression>
+<ChildExpression>{window.name?<FirstChild />:<SecondChild />}</ChildExpression>
 ```
 
 ##### 可以通过`props.children`来访问该组件的孩子
@@ -281,32 +278,31 @@ const MyApp=()=>{
 ```
 
 
-除了`false`以外,0、""、null、undefined、NaN,也会认为是假，其中0和NaN会输出自身。
+除了`false`以外,0、""、null、undefined、NaN,也会认为是假，但是它们会把自身输出
 ``` jsx
- const isShow=true;
- const TopBar =()=>{
-   return(
-     <div>我是topbar</div>
-   )
- }
- const Top=()=>{
-   return(
-     <div>
-      {isShow&&<TopBar />}
-     </div>
-   )
- }
+const FalsyComponent = () => {
+  return (
+      <div>
+          <div>If you see this,the value is true</div>
+      </div>
+  )
+}
+
+const value=false;
+return(
+    <div>
+        {value && <FalsyComponent />}
+    </div>
+)
 ```
 
 ### React组件
-
-`React`组件基本上由三部分组成，组件的构建方式、组件的属性状态、组件的生命周期
 
 #### 组件的构建方法
 
 方法一、`React.createClass`
 
-最传统、也是兼容性最好的方法，`v0.14`版本之前，官方唯一指定的组件写法
+最传统、也是兼容性最好的方法，`v0.14`版本之前，官方唯一指定的组件写法，但是目前版本已经不建议去使用了。
 
 ``` jsx
 const Button = React.createClass({
@@ -357,11 +353,7 @@ class Button extends React.Component{
 使用无状态函数构建的是无状态的组件,这个是`v0.14`版本之后新增的方式，
 
 ``` jsx
-function Button(){
-  getDefaultProps(){
-    color:'blue',
-    text:'Confirm'
-  }
+function Button({color='blue',text='Confirm'}){
   return (
     <button className={`btn btn-${color}`}>
       <span>{text}</span>
@@ -375,34 +367,129 @@ function Button(){
 #### 组件的渲染
 
 ``` jsx
-function Hello(props){
-  return <h1>Hello {props.name}!</h1>
+function ComponentRender(){
+  return <h1>把这个组件渲染到页面中</h1>
 }
 
 ReactDOM.render(
-  <Hello name="xiaoming" />,
+  <ComponentRender />,
   document.getElementById('root')
 )
 ```
+
+#### 组合组件
+
+``` jsx
+
+function SingleComponent(props){
+  return <h1>{props.name}组件</h1>
+}
+
+function CombineComponent(){
+  return(
+    <SingleComponent name='第一个' />
+    <SingleComponent name='第二个' />
+    <SingleComponent name='第三个' />
+  )
+}
+
+ReactDOM.render(
+  <ComponentRender />,
+  document.getElementById('root')
+)
+```
+
+#### 提取组件
+
+``` jsx
+function Comment(props){
+  return(
+    <div className="comment">
+      <div className="userinfo">
+        <img className="avatar" src={props.author.avatarUrl} alt={props.author.name} />
+        <div className="userinfo-name">{props.author.name}</div>
+      </div>
+      <div className="comment-txt">{props.text}</div>
+      <div className="comment-text">{formatDate(props.date)}</div>
+    </div>
+  )
+}
+```
+
+对用户头像部分进行提取
+
+``` jsx
+function Avatar(props){
+  return(
+    <img className="avatar" src={props.user.avatarUrl} alt={props.user.name} />
+  )
+}
+
+function Comment(props){
+  return(
+    <div className="comment">
+      <div className="userinfo">
+        <Avatar user={props.author} />
+        <div className="userinfo-name">{props.author.name}</div>
+      </div>
+      <div className="comment-txt">{props.text}</div>
+      <div className="comment-text">{formatDate(props.date)}</div>
+    </div>
+  )
+}
+```
+
+用户信息部分进行提取
+
+``` jsx
+function Avatar(props){
+  return(
+    <img className="avatar" src={props.user.avatarUrl} alt={props.user.name} />
+  )
+}
+
+function UserInfo(props){
+  return(
+    <div className="userinfo">
+        <Avatar user={props.user} />
+        <div className="userinfo-name">{props.user.name}</div>
+    </div>
+  )
+}
+
+function Comment(props){
+  return(
+    <div className="comment">
+      <UserInfo user={props.author} />
+      <div className="comment-txt">{props.text}</div>
+      <div className="comment-text">{formatDate(props.date)}</div>
+    </div>
+  )
+}
+```
+
 
 ### `React`数据流
 
 #### `props`
 
-##### 作用 
+##### 作用
 
 父级向子级传递数据的一种方式。
 
 ##### 特点
+
 <strong>只读的</strong>，组件内部不能修改自己的`props`
 
 
 #### `state`
 
 ##### 作用
+
 将用户的交互行为反馈到用户界面,使得界面和数据保持一致。更新`state`会导致重新渲染用户界面,即用户界面会随着`state`的变化而变化。
 
 ##### 特点
+
 它只存在于组件的内部,可以通过`setState()`方法来修改
 
 ##### 使用注意点
@@ -411,11 +498,11 @@ ReactDOM.render(
 
 ``` jsx
 //这种方式不会重新渲染组件
-this.state.msg="Hello";
+this.state.msg="Hi";
 
 //应该使用这种方式
 this.setState({
-  msg:'Hello'
+  msg:'Hi'
 })
 ```
 
@@ -423,15 +510,23 @@ this.setState({
 
 
 ``` jsx
-//错误的
+//不建议这么使用
 this.setState({
-  counter:this.state.counter + this.props.increase;
+    counter: this.state.counter + 1 
 })
 
-//正确的
-this.setState((prevState,props)=>({
-  counter:prevState.counter + props.increase;
-}))
+this.setState({
+    counter: this.state.counter + 1 
+})
+
+//建议这么使用
+this.setState((prevState)=>{
+    return {counter: prevState.counter + 1 }
+})
+
+this.setState((prevState)=>{
+    return {counter: prevState.counter + 1 }
+})
 ```
 
 `setState()`用法
@@ -450,7 +545,7 @@ this.setState({
 
 //函数
 this.setState((prevState,props)={
-  return {msh:'Hi'}
+  return {msg:'Hi'}
 })
 
 ```
