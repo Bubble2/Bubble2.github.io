@@ -40,7 +40,7 @@ console.log('map2.a:'+map2.get('a'))
 
 `Immutable`的实现原理是`Persistent Data Structure`（持久化数据结构），即使用旧数据创建新数据时，会保证旧数据可用且不变，同时为了避免`deepCopy`把所有节点都复制一遍带来的性能损耗，`Immutable`使用了`Structural Sharing`（结构共享），即如果对象数中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享，如下图：
 
-![image](../img/immutable/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif)
+![image](/img/immutable/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif)
 
 
 ### `immutable`的`api`介绍
