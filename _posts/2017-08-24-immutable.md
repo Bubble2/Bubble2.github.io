@@ -45,7 +45,7 @@ console.log('map2.a:'+map2.get('a'))
 
 ### `immutable`的`api`介绍
 
-`immutable`内部实现了一整套的持久化数据结构，
+`immutable`内部实现了一整套的持久化数据结构
 
 - 数据类型，比如`Collection`、`List`、`Map`、`OrderedMap`、`Set`、`OrderedSet`、`Stack`、`Record`、`Seq`。
 
@@ -59,7 +59,7 @@ console.log('map2.a:'+map2.get('a'))
 
 - `List`：有序可重复的列表，对应`Array`。
 - `Map`：键值对集合，对应`Object`，`ES6`也有专门的`Map`对象。
-- `Set`：无须且不可重复的列表，`ES6`中也有专门的`Set`对象。
+- `Set`：无序且不可重复的列表，`ES6`中也有专门的`Set`对象。
 
 简单介绍几个常用的方法
 
@@ -112,7 +112,7 @@ const data1 = Immutable.fromJS([1,2,3])
 console.log(data1.toJS())
 ```
 
-`set()`：接受`immutable`类型数据，返回一个新的`immutable`数据,如果值存在则替换。
+`set()`：接受两个参数，第一个是`List`的索引值或者`Map`的`key`值，第二个是需要设定的值；返回一个新的`List`或者`Map`。
 
 ``` js
 import Immutable from 'immutable';
@@ -123,6 +123,16 @@ const map = Immutable.Map({a:1,b:2,c:3})
 console.log(map.set('d',4))
 ```
 
+`get()`：接受一个参数，`List`的索引值或者`Map`的`key`值
+
+``` js
+import Immutable from 'immutable';
+const list = Immutable.List([1,2,3])
+console.log(list.get(2))  //3
+
+const map = Immutable.Map({a:1,b:2,c:3})
+console.log(map.get('a'))  //1
+```
 
 用一张图来罗列下`immutable`数据之前的继承关系
 
