@@ -97,7 +97,6 @@ import Immutable from 'immutable';
 console.log(Immutable.List([1,2,[3,4]]))
 ```
 
-
 `Map()`：接受原生`js`的`Object`，返回`immutable`的`Map`
 
 ``` js
@@ -127,7 +126,7 @@ console.log(map.set('d',4))
 
 用一张图来罗列下`immutable`数据之前的继承关系
 
-![image](../img/immutable/TM20170906144039.png)
+![image](/img/immutable/TM20170906144039.png)
 
 
 ### 在`React`中使用`immutable`
