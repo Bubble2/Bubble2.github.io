@@ -49,15 +49,86 @@ console.log('map2.a:'+map2.get('a'))
 
 - 数据类型，比如`Collection`、`List`、`Map`、`OrderedMap`、`Set`、`OrderedSet`、`Stack`、`Record`、`Seq`。
 
-- 全局方法(挂在`Immutable`对象下面的)，`fromJs()`、`is()`、`hash()`、`isImmutable()`、`isCollection`、`isKeyed()`、`isIndexed()`、`isAssociative()`、`isOrdered()`、`isValueObject()`、`Range()`、`Repeat()`
+- 全局方法(挂在`Immutable`对象下面的)，`fromJS()`、`is()`、`hash()`、`isImmutable()`、`isCollection`、`isKeyed()`、`isIndexed()`、`isAssociative()`、`isOrdered()`、`isValueObject()`、`Range()`、`Repeat()`等。
 
-- 实例方法（挂在`Immutable Data`上的），如`map()`、`filter()`、`groupBy()`、`reduce()`、`find()`等等，方法非常多具体查看官方`api`。
+- 静态方法（挂在`Immutable Data`上的），如`List.isList()`、`List.of()`、`Map.isMap()`等
+
+- 实例方法（挂在`Immutable Data`的实例上的），如`map()`、`filter()`、`groupBy()`、`reduce()`、`find()`等等，方法非常多具体查看官方`api`。
 
 比较重要且用的比较多的数据类型：
 
 - `List`：有序可重复的列表，对应`Array`。
 - `Map`：键值对集合，对应`Object`，`ES6`也有专门的`Map`对象。
 - `Set`：无须且不可重复的列表，`ES6`中也有专门的`Set`对象。
+
+简单介绍几个常用的方法
+
+`fromJS()`：接受原生`js`类型数据，返回`immutable`类型数据。
+
+``` js
+import Immutable from 'immutable';
+console.log(Immutable.fromJS([1,{a:2},{b:[3,4,5]}]))
+```
+
+`is()`：接受两个`immutable`数据,返回一个布尔值，表示这两个数据是否相等
+
+``` js
+import Immutable from 'immutable';
+const obj1 = Map({a:1,b:2});
+const obj2 = Map({a:1,b:2});
+console.log(obj1==obj2);
+console.log(Immutable.is(obj1,obj2));
+```
+
+`hash()`：接受一个`immutable`数据,返回一个31位的整数，这个值就是每一个`immutable`数据的唯一表示，用来判断两个数据是否相等的。
+
+``` js
+import Immutable from 'immutable';
+const obj1 = Map({a:1,b:2});
+const obj2 = Map({a:1,b:2});
+console.log('obj1.hash:'+Immutable.hash(obj1));
+console.log('obj2.hash:'+Immutable.hash(obj2));
+```
+
+`List()`：接受原生`js`的`Array`，返回`immutable`的`List`
+
+``` js
+import Immutable from 'immutable';
+console.log(Immutable.List([1,2,[3,4]]))
+```
+
+
+`Map()`：接受原生`js`的`Object`，返回`immutable`的`Map`
+
+``` js
+import Immutable from 'immutable';
+console.log(Immutable.Map({a:1,b:{c:2}}))
+```
+
+`toJS()`：接受`immutable`类型数据，返回原生`js`类型数据，与`fromJS()`相反。
+
+``` js
+import Immutable from 'immutable';
+const data1 = Immutable.fromJS([1,2,3])
+console.log(data1.toJS())
+```
+
+`set()`：接受`immutable`类型数据，返回一个新的`immutable`数据,如果值存在则替换。
+
+``` js
+import Immutable from 'immutable';
+const list = Immutable.List([1,2,3])
+console.log(list.set(3,4))
+
+const map = Immutable.Map({a:1,b:2,c:3})
+console.log(map.set('d',4))
+```
+
+
+用一张图来罗列下`immutable`数据之前的继承关系
+
+![image](../img/immutable/TM20170906144039.png)
+
 
 ### 在`React`中使用`immutable`
 
@@ -313,6 +384,43 @@ ReactDOM.render(<ParentComponent />,document.getElementById('root'))
 ```
 
 ### 如何结合`redux`项目使用？
+
+``` js
+class Counter extends React.Component{
+    
+    render(){
+        return(
+            <div>
+                <h1>{this.props.value}</h1>
+                <button onClick={this.props.onIncrease}>+</button>
+                <button onClick={this.props.onDecrease}>-</button>
+            </div>
+        )
+    }
+}
+
+const reducer = (state=0,action)=>{
+    switch(action.type){
+        case 'INCREASE':return state+1;
+        case 'DECREASE':return state-1;
+        default: return state;
+    }
+}
+
+const store = createStore(reducer);
+
+const render=()=>{
+    ReactDOM.render(
+        <Counter value={store.getState()} onIncrease={()=>store.dispatch({type:'INCREASE'})} onDecrease={()=>store.dispatch({type:'DECREASE'})}/>,
+        document.getElementById('root')
+    )
+}
+
+render();
+store.subscribe(render)
+```
+
+
 
 
 
