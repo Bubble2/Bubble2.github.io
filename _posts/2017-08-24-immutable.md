@@ -7,7 +7,7 @@ author:     "guozhaodong"
 
 ### 为什么会出现`immutable`
 
-在`javascript`中对象都是引用类型的，新的对象对象引用了原始对象，改变新对象原始对象也会改变。
+在`javascript`中对象都是引用类型的，新的对象引用了原始对象，改变新对象原始对象也会改变。
 
 ``` js
 let foo = {a:1}
@@ -17,7 +17,7 @@ console.log('bar.a:'+bar.a);
 console.log('foo.a:'+foo.a);
 ```
 
-为了解决这个问题我们一般采用的是<strong>浅拷贝</strong>(`shadowCopy`)或<strong>深拷贝</strong>(`deepCopy`)来避免这种问题，但是这种做`cpu`和内存的浪费。
+为了解决这个问题我们一般采用的是<strong>浅拷贝</strong>(`shadowCopy`)或<strong>深拷贝</strong>(`deepCopy`)来避免这种问题，但是这种做法会导致`cpu`和内存的浪费。
 
 这时`Immutable`的出现很好地解决了这个问题，既能对数据进行深拷贝，同时也不会很耗性能。
 
@@ -41,6 +41,15 @@ console.log('map2.a:'+map2.get('a'))
 `Immutable`的实现原理是`Persistent Data Structure`（持久化数据结构），即使用旧数据创建新数据时，会保证旧数据可用且不变，同时为了避免`deepCopy`把所有节点都复制一遍带来的性能损耗，`Immutable`使用了`Structural Sharing`（结构共享），即如果对象数中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享，如下图：
 
 ![image](/img/immutable/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif)
+
+深拷贝
+![image](/img/immutable/1234637-4f59ca4e0ff61af4.png)
+
+浅拷贝
+![image](/img/immutable/1234637-f14424d82fc9855e.png)
+
+`immutable`方式
+![image](/img/immutable/1234637-a58fde3fc627a0dd.png)
 
 
 ### `immutable`的`api`介绍
