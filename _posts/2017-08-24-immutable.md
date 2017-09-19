@@ -198,6 +198,9 @@ class ParentComponent extends React.Component{
             },
             d:{
                 e:2
+            },
+            c:{
+                g:6
             }
         }
     }
@@ -220,6 +223,7 @@ class ParentComponent extends React.Component{
             <div>
                  <ChildComponent1 {...this.state.a}/>
                  <ChildComponent2 {...this.state.d}/>
+                 <ChildComponent3 {...this.state.c}/>
                  <button onClick={this.clickHandle}>点击我改变父组件的state</button>
             </div>
         )
@@ -251,6 +255,21 @@ class ChildComponent2 extends React.Component{
             <div>
                 我是子组件2：
                 {this.props.e}
+            </div>
+        )
+    }
+}
+class ChildComponent3 extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    render(){
+        console.log('子组件3的render被执行了')
+        return(
+            <div>
+                我是子组件3：
+                {this.props.g}
             </div>
         )
     }
@@ -278,6 +297,9 @@ class ParentComponent extends React.Component{
             },
             d:{
                 e:2
+            },
+            c:{
+                g:6
             }
         }
     }
@@ -300,6 +322,7 @@ class ParentComponent extends React.Component{
             <div>
                  <ChildComponent1 {...this.state.a}/>
                  <ChildComponent2 {...this.state.d}/>
+                 <ChildComponent3 {...this.state.c}/>
                  <button onClick={this.clickHandle}>点击我改变父组件的state</button>
             </div>
         )
@@ -338,6 +361,23 @@ class ChildComponent2 extends React.Component{
     }
 }
 
+class ChildComponent3 extends React.Component{
+    constructor(props){
+        super(props);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
+    render(){
+        console.log('子组件3的render被执行了')
+        return(
+            <div>
+                我是子组件3：
+                {this.props.g}
+            </div>
+        )
+    }
+}
+
 ReactDOM.render(<ParentComponent />,document.getElementById('root'))
 ```
 
@@ -360,6 +400,9 @@ class ParentComponent extends React.Component{
             },
             d:{
                 e:2
+            },
+            c:{
+                g:6
             }
         }
     }
@@ -382,6 +425,7 @@ class ParentComponent extends React.Component{
             <div>
                  <ChildComponent1 {...this.state.a}/>
                  <ChildComponent2 {...this.state.d}/>
+                 <ChildComponent3 {...this.state.c}/>
                  <button onClick={this.clickHandle}>点击我改变父组件的state</button>
             </div>
         )
@@ -430,6 +474,29 @@ class ChildComponent2 extends React.Component{
             <div>
                 我是子组件2：
                 {this.props.e}
+            </div>
+        )
+    }
+}
+class ChildComponent3 extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    shouldComponentUpdate(nextProps,nextState){
+        const $$nextProps=fromJS(nextProps),
+            $$nextState=fromJS(nextState),
+            $$thisProps=fromJS(this.props),
+            $$thisState=fromJS(this.state);
+        return !(this.props===nextProps|| is($$thisProps,$$nextProps)) || !(this.state === nextState || is($$thisState,$$nextState))
+    }
+
+    render(){
+        console.log('子组件3的render被执行了')
+        return(
+            <div>
+                我是子组件3：
+                {this.props.g}
             </div>
         )
     }
