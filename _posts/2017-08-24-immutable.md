@@ -152,18 +152,29 @@ console.log(map.get('a'))  //1
 
 #### 为什么要在`React`中使用？
 
-一句话就是提升性能
+一、性能的提升
 
-一、对复杂数据进行操作时，如果比较深层次的数据发生变化，我们只能用深拷贝，但是这样很耗性能，所以`immutable`就派上用场了。
+1、对复杂数据进行操作时，如果比较深层次的数据发生变化，我们只能用深拷贝，但是这样很耗性能，所以`immutable`就派上用场了。
 
-二、对`react`组件做性能优化
-熟悉`React.js`的都应该知道,`React.js`是一个`view`层的框架，它使用了`virtual dom`,同时通过`diff`来比较`dom`是否变化，判断是否需要更新`dom`，以此实现了高效的`dom`更新。
+2、熟悉`React.js`的都应该知道,`React.js`是一个`view`层的框架，它使用了`virtual dom`,同时通过`diff`来比较`dom`是否变化，判断是否需要更新`dom`，以此实现了高效的`dom`更新。
 
 有两种情况：
 
 - 当`state`更新时，但是数据没有变化，`react`也仍然会对`virtual dom`去做`diff`，这样就产生了浪费。
 
 - 一个父组件下面有多个子组件时，如果父组件发生了`re-render`，那么它下面的所有子组件也会`re-render`，其实很多子组件的`props`和`state`是没有变化的，所有这样也会造成资源浪费。
+
+二、丰富的api
+
+``` js
+//普通的的浅拷贝
+var state = Object.assign({},state,{
+    key:value
+});
+
+//immutable
+var state = state.set('key',value);
+```
 
 
 #### 如何使用`immutable`优化`react`?
@@ -181,7 +192,9 @@ class ParentComponent extends React.Component{
         this.clickHandle=this.clickHandle.bind(this);
         this.state={
             a:{
-                b:1
+                b:{
+                    f:1
+                }
             },
             d:{
                 e:2
@@ -192,7 +205,12 @@ class ParentComponent extends React.Component{
         console.log('我点击了一次按钮')
         this.setState({
             a:{
-                b:3
+                b:{
+                    f:3
+                }
+            },
+            d:{
+                e:4
             }
         })
     }
@@ -217,7 +235,7 @@ class ChildComponent1 extends React.Component{
         return(
             <div>
                 我是子组件1：
-                {this.props.b}
+                {this.props.b.f}
             </div>
         )
     }
@@ -254,7 +272,9 @@ class ParentComponent extends React.Component{
         this.clickHandle=this.clickHandle.bind(this);
         this.state={
             a:{
-                b:1
+                b:{
+                    f:1
+                }
             },
             d:{
                 e:2
@@ -265,7 +285,12 @@ class ParentComponent extends React.Component{
         console.log('我点击了一次按钮')
         this.setState({
             a:{
-                b:3
+                b:{
+                    f:3
+                }
+            },
+            d:{
+                e:4
             }
         })
     }
@@ -291,7 +316,7 @@ class ChildComponent1 extends React.Component{
         return(
             <div>
                 我是子组件1：
-                {this.props.b}
+                {this.props.b.f}
             </div>
         )
     }
@@ -329,7 +354,9 @@ class ParentComponent extends React.Component{
         this.clickHandle=this.clickHandle.bind(this);
         this.state={
             a:{
-                b:1
+                b:{
+                    f:1
+                }
             },
             d:{
                 e:2
@@ -340,7 +367,12 @@ class ParentComponent extends React.Component{
         console.log('我点击了一次按钮')
         this.setState({
             a:{
-                b:3
+                b:{
+                    f:3
+                }
+            },
+            d:{
+                e:4
             }
         })
     }
@@ -374,7 +406,7 @@ class ChildComponent1 extends React.Component{
         return(
             <div>
                 我是子组件1：
-                {this.props.b}
+                {this.props.b.f}
             </div>
         )
     }
@@ -406,7 +438,7 @@ class ChildComponent2 extends React.Component{
 ReactDOM.render(<ParentComponent />,document.getElementById('root'))
 ```
 
-### 如何结合`redux`项目使用？
+### 如何结合`redux`项目使用？ 
 
 ``` js
 class Counter extends React.Component{
@@ -435,6 +467,47 @@ const store = createStore(reducer);
 const render=()=>{
     ReactDOM.render(
         <Counter value={store.getState()} onIncrease={()=>store.dispatch({type:'INCREASE'})} onDecrease={()=>store.dispatch({type:'DECREASE'})}/>,
+        document.getElementById('root')
+    )
+}
+
+render();
+store.subscribe(render)
+```
+
+
+``` js
+class Counter extends React.Component{
+    
+    render(){
+        return(
+            <div>
+                <h1>{this.props.value}</h1>
+                <button onClick={this.props.onIncrease}>+</button>
+                <button onClick={this.props.onDecrease}>-</button>
+            </div>
+        )
+    }
+}
+
+const initialState = List([0]);
+const reducer = (state=initialState,action)=>{
+    switch(action.type){
+        case 'INCREASE':return state.update(0,v=>v+1);
+        case 'DECREASE':return state.update(0,v=>v-1);
+        default: return state;
+    }
+}
+
+const combineReducer=combineReducers({
+    reducer
+})
+
+const store = createStore(combineReducer);
+
+const render=()=>{
+    ReactDOM.render(
+        <Counter value={store.getState().reducer.toJs()} onIncrease={()=>store.dispatch({type:'INCREASE'})} onDecrease={()=>store.dispatch({type:'DECREASE'})}/>,
         document.getElementById('root')
     )
 }
