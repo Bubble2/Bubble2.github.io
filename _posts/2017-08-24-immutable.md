@@ -507,13 +507,15 @@ ReactDOM.render(<ParentComponent />,document.getElementById('root'))
 
 ### 如何结合`redux`项目使用？ 
 
+使用浅拷贝方式
 ``` js
 class Counter extends React.Component{
     
     render(){
         return(
             <div>
-                <h1>{this.props.value}</h1>
+                <h1>{this.props.title}</h1>
+                <p>{this.props.num}</p>
                 <button onClick={this.props.onIncrease}>+</button>
                 <button onClick={this.props.onDecrease}>-</button>
             </div>
@@ -521,19 +523,30 @@ class Counter extends React.Component{
     }
 }
 
-const reducer = (state=0,action)=>{
+const initialState = {
+    num:0,
+    title:'This is a simple counter'
+};
+const reducer = (state=initialState,action)=>{
     switch(action.type){
-        case 'INCREASE':return state+1;
-        case 'DECREASE':return state-1;
+        case 'INCREASE':return state = Object.assign({},state,{
+            num: state.num + 1
+        });
+        case 'DECREASE':return state = Object.assign({},state,{
+            num: state.num - 1
+        });
         default: return state;
     }
 }
 
+
+
 const store = createStore(reducer);
 
 const render=()=>{
+    const state=store.getState();
     ReactDOM.render(
-        <Counter value={store.getState()} onIncrease={()=>store.dispatch({type:'INCREASE'})} onDecrease={()=>store.dispatch({type:'DECREASE'})}/>,
+        <Counter title={state.title} num={state.num} onIncrease={()=>store.dispatch({type:'INCREASE'})} onDecrease={()=>store.dispatch({type:'DECREASE'})}/>,
         document.getElementById('root')
     )
 }
@@ -542,14 +555,20 @@ render();
 store.subscribe(render)
 ```
 
-
+使用`immutable`方式
 ``` js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import {combineReducers} from 'redux-immutable';
+
 class Counter extends React.Component{
     
     render(){
         return(
             <div>
-                <h1>{this.props.value}</h1>
+                <h1>{this.props.title}</h1>
+                <p>{this.props.num}</p>
                 <button onClick={this.props.onIncrease}>+</button>
                 <button onClick={this.props.onDecrease}>-</button>
             </div>
@@ -557,14 +576,18 @@ class Counter extends React.Component{
     }
 }
 
-const initialState = List([0]);
+const initialState = Map({
+    num:0,
+    title:'This is a simple counter'
+});
 const reducer = (state=initialState,action)=>{
     switch(action.type){
-        case 'INCREASE':return state.update(0,v=>v+1);
-        case 'DECREASE':return state.update(0,v=>v-1);
+        case 'INCREASE':return state.update('num',v=>v+1);
+        case 'DECREASE':return state.update('num',v=>v-1);
         default: return state;
     }
 }
+
 
 const combineReducer=combineReducers({
     reducer
@@ -573,8 +596,9 @@ const combineReducer=combineReducers({
 const store = createStore(combineReducer);
 
 const render=()=>{
+    const state=store.getState().get('reducer').toJS();
     ReactDOM.render(
-        <Counter value={store.getState().reducer.toJs()} onIncrease={()=>store.dispatch({type:'INCREASE'})} onDecrease={()=>store.dispatch({type:'DECREASE'})}/>,
+        <Counter title={state.title} num={state.num} onIncrease={()=>store.dispatch({type:'INCREASE'})} onDecrease={()=>store.dispatch({type:'DECREASE'})}/>,
         document.getElementById('root')
     )
 }
