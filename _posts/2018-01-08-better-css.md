@@ -12,6 +12,7 @@ author:     "guozhaodong"
 1.`margin`、`padding`的简写
 
 > 以下为`margin`的栗子，`padding`相同。
+
 ``` css
 margin:10px 10px 10px 10px;
 margin:10px; /*简写*/
