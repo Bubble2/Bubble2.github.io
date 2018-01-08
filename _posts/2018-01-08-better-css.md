@@ -24,5 +24,5 @@ margin:10px 5px 15px 5px;
 margin:10px 5px 15px;/*简写*/
 ```
 
-![image](../img/better-css/margin_simplified.png)
+![image](/img/better-css/margin_simplified.png)
 
