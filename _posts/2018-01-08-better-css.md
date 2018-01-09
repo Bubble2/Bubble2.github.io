@@ -7,7 +7,7 @@ author:     "guozhaodong"
 
 ### 一些`css`规范
 
-#### 关于`css`属性值简写
+#### 一、关于`css`属性值简写
 
 1.`margin`、`padding`的简写
 
@@ -16,9 +16,7 @@ author:     "guozhaodong"
 ``` css
 margin:10px 10px 10px 10px = margin:10px
 
-
 margin:10px 5px 10px 5px = margin:10px 5px
-
 
 margin:10px 5px 15px 5px = margin:10px 5px 15px
 
@@ -44,7 +42,7 @@ padding:21px 25px 0 28px;
 
 ![image](/img/better-css/2.png)
 
-#### 尽量去使用通用的东西，不要重复造轮子
+#### 二、尽量去使用通用的东西，不要重复造轮子
 
 1、如按钮(`ui_button`)、提示(`ui_tip`)、弹框(`ui_pop`)、图标(`ui_icon`)等都有现成的组件,如果没有特殊情况都可以使用。
 
@@ -75,7 +73,7 @@ h3{
 
 ```
 
-#### 关于`class`的命名
+#### 三、关于`class`的命名
 
 `class`的命名规范比较多，仁者见仁智者见智，而且不同的开发团队对于规范也是不尽相同，
 
@@ -123,7 +121,6 @@ h3{
  </div>
 ```
 
-
 下面再讲下命名的几个注意点吧。
 
 1、如果当前写的样式是一个通用的样式，很多页面会引用到，那么你的`class`命名要比较特殊、复杂一点，这样做可以尽量防止页面其它`class`与它命名冲突。
@@ -131,7 +128,7 @@ h3{
 举个栗子：
 ![image](/img/better-css/5.png)
 
-上面这个编辑浮层`class`为`widget-editable-layer`采用了三个字符进行连接
+上面这个编辑浮层`class`为`widget-editable-layer`采用了三个单词进行连接
 
-2、如果当前写的样式是具体某个页面才会用到的，那么你只要保证在当前页面是唯一的就行了，所以命名可以稍微精简一点。
+2、如果当前写的样式是具体某个页面才会用到的，那么你只要保证在当前页面是唯一的就行了，所以命名可以稍微简单一些。
 
