@@ -33,10 +33,18 @@ padding:21px 25px 0 28px;
 
 2、十六进制颜色值的缩写
 
+6位rgb颜色值如果两位两位相同的话可以简写成3位
+
 ```
 #ffffff = #fff
 
 #ff00ee = #f0e
 ```
+
 ![image](/img/better-css/2.png)
 
+#### 尽量去使用通用的东西
+
+如按钮(`ui_button`)、提示(`ui_tip`)、弹框(`ui_pop`)、图标(`ui_icon`)等都有现成的组件,如果没有特殊情况都可以使用。
+
+![image](/img/better-css/3.png)
