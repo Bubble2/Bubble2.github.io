@@ -43,7 +43,7 @@ padding:21px 25px 0 28px;
 
 ![image](/img/better-css/2.png)
 
-#### 尽量去使用通用的东西
+#### 尽量去使用通用的东西，不要重复造轮子
 
 1、如按钮(`ui_button`)、提示(`ui_tip`)、弹框(`ui_pop`)、图标(`ui_icon`)等都有现成的组件,如果没有特殊情况都可以使用。
 
