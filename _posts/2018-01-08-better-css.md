@@ -45,6 +45,31 @@ padding:21px 25px 0 28px;
 
 #### 尽量去使用通用的东西
 
-如按钮(`ui_button`)、提示(`ui_tip`)、弹框(`ui_pop`)、图标(`ui_icon`)等都有现成的组件,如果没有特殊情况都可以使用。
+1、如按钮(`ui_button`)、提示(`ui_tip`)、弹框(`ui_pop`)、图标(`ui_icon`)等都有现成的组件,如果没有特殊情况都可以使用。
 
 ![image](/img/better-css/3.png)
+
+上面的栗子可以把`btn bulletin-more`改成`btn btn-primary btn-xl`
+
+2、sass中也有一些公共的方法（`mixin`，`function`等）
+
+![image](/img/better-css/4.png)
+
+上面的文字超出指定宽度出现省略号的效果也有现成的`mixin`
+
+``` css
+@mixin textclip($maxWidth){
+    max-width:$maxWidth;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+//可以这么使用
+h3{
+    font-size:16px;
+    margin-bottom:-4px;
+    @include textclip(100%);
+}
+
+```
