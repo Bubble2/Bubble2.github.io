@@ -218,7 +218,7 @@ h3{
     </div>
 ```
 
-如果这个边距全部放到上边距或者全部放到下边距，如图10
+如果这个边距全部用下外边距或者上外边距，如图10
 ``` css
     .widget-floor-tp3-style1{
         margin-bottom:40px;
@@ -283,6 +283,46 @@ h3{
 图13
 
 > 正常情况下空白建议首先考虑使用padding去填充。其次我们在使用的时候需要多去考虑其场景的变化，看看我们的做的是否适合能考虑到的所有场景。
+
+#### 三、布局时候尽量考虑自适应
+
+布局的时候要考虑到此处是否会经常修改或变化，如果是则尽量做到自适应,这样后期的修改就会少点。
+
+![image](/img/better-css/14.png)
+
+``` css
+    //bad
+
+    {
+        position:absolute;
+        top:16px;
+        width:70px;
+        height:10px;
+    }
+
+    //good
+
+    {
+        position:absolute;
+        top:50%;
+        width:70px;
+        height:10px;
+        margin-top:-10px;
+    }
+```
+
+#### 四、负`margin`的运用
+
+1、影响元素的宽度
+
+如果元素<b>不脱离文档流</b>、<b>不使用`float`</b>、`width`为`auto`的话，给元素添加`margin-left`或者`margin-right`为负值时，都会增加元素自身的宽度。
+
+运用场景 <a href="https://codepen.io/Bubble2/pen/WdWrPP" target="_blank">栗子点我</a>
+
+![image](/img/better-css/15.png)
+
+![image](/img/better-css/16.png)
+
 
 
 
