@@ -311,7 +311,7 @@ h3{
     }
 ```
 
-#### 四、负`margin`的运用
+#### 四、关于负`margin`
 
 1、影响元素的宽度
 
@@ -321,7 +321,32 @@ h3{
 
 ![image](/img/better-css/15.png)
 
+用了`margin-right`后效果，如图16
+
 ![image](/img/better-css/16.png)
+图16
+
+2、对浮动元素的影响
+
+`margin-left:-10px`，元素向左边偏移10个像素，同时后面的元素也跟随向右偏移，如图17
+
+![image](/img/better-css/17.png)
+图17
+
+
+运用场景1  <a href="https://codepen.io/Bubble2/pen/xpeRbq" target="_blank">栗子点我</a>
+
+![image](/img/better-css/18.png)
+
+运用场景2-中间自适应两边固定布局  <a href="https://codepen.io/Bubble2/pen/qpwqxx" target="_blank">栗子点我</a>
+
+![image](/img/better-css/19.png)
+
+
+
+
+
+
 
 
 
