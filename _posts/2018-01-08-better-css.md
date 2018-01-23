@@ -9,7 +9,7 @@ author:     "guozhaodong"
 
 #### 一、关于`css`属性值简写
 
-1.`margin`、`padding`的简写
+1.`margin`、`padding`的简写 
 
 > 以下为`margin`的栗子，`padding`相同。
 
@@ -93,34 +93,6 @@ h3{
 
 ![image](/img/better-css/7.png)
 
-##### 命名方法
-
-先确定该结构是不是
-
-``` html
- <div class="floor">
-    <div class="floor-hd">
-        <h3 class="floor-tit">楼层标题</h3>
-        <span class="floor-tail"></span>
-    </div>
-    <div class="floor-bd">
-        <div class="pro-lst">
-            <ul>
-                <li>
-                    <div class="pro-info">
-                        <p class="pro-tit">产品名称</p>
-                        <p class="pro-price">￥13.00</p>
-                    </div>
-                    <div class="pro-img">
-                        <img src="">
-                    </div>
-                </li>
-            </ul>
-        <div>
-    </div>
- </div>
-```
-
 下面再讲下命名的几个注意点吧。
 
 1、如果当前写的样式是一个通用的样式，很多页面会引用到，那么你的`class`命名要比较特殊、复杂一点，这样做可以尽量防止页面其它`class`与它命名冲突。如果当前写的样式是具体某个页面才会用到的，那么你只要保证在当前页面是唯一的就行了，所以命名可以稍微简单一些。
@@ -130,5 +102,189 @@ h3{
 
 上面这个编辑浮层`class`为`widget-editable-layer`采用了三个单词进行连接，也可以尝试一下使用`BEM`方式命名。
 
-2、
+#### 四、关于属性名的嵌套层级不宜太多
+
+不论是`css`还是`sass`中的属性名称正常情况下不要超过三个层级
+特别是`sass`可以属性嵌套，很多人都喜欢一层套一层，最后套了很多层
+
+![image](/img/better-css/8.png)
+
+``` scss
+//bad
+.widget-floor-tp4-style4{
+    .pro-lst{
+        ul{
+            li{
+                .txt-top{
+                    .title{
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+//good
+.widget-floor-tp4-style4{
+    .pro-lst{
+        ul{
+
+        }
+        li{
+
+        }
+        .txt-top{
+            
+        }
+        .title{
+
+        }
+    }
+}
+```
+
+### 如何更好地去书写`css`
+
+#### 一、关于`css`属性的书写
+
+1、对于一个`class`需要写哪些`css`属性，有的人可能会搞不太清楚,下面我来把基本的属性罗列一下；书写的顺序最好也按照下面的这种顺序去写。
+
+``` css
+    .box{
+        /*定位相关属性*/
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        z-index:10;
+        ...
+
+        /*布局相关属性*/
+        display:block;
+        float:left;
+        ...
+
+        /*自身属性*/
+        width:100px;
+        height:100px;
+        line-height:100px;
+        padding:10px;
+        margin:10px;
+        ...
+
+        /*文本相关属性*/
+        font-family:Arial;
+        font-size:14px;
+        font-style:normal;
+        color:#000;
+        text-align:center;
+        ...
+
+        /*视觉效果相关*/
+        background:#f5f5f5;
+        border:1px solid #e5e5e5;
+        border-radius:5px;
+        box-shadow:0 0 10px rgba(0,0,0,1);
+        ...
+
+        /*其它属性*/
+        opacity:0;
+        overflow:hidden;
+        transition:.2s ease;
+    }
+```
+
+#### 二、关于`margin`和`padding`的使用
+
+![image](/img/better-css/9.png)
+
+这个空白我到底是用`margin`还是`padding`？加在哪个div上面呢？
+
+先看下`html`结构
+
+``` html
+    <div class="widget-floor-tp3-style1">
+    
+    </div>
+    <div class="widget-floor-tp3-style2">
+  
+    </div>
+    <div class="widget-floor-tp3-style3">
+    
+    </div>
+```
+
+如果这个边距全部放到上边距或者全部放到下边距，如图10
+``` css
+    .widget-floor-tp3-style1{
+        margin-bottom:40px;
+    }
+    .widget-floor-tp3-style2{
+        margin-bottom:40px;
+    }
+    .widget-floor-tp3-style3{
+        margin-bottom:40px;
+    }
+```
+
+![image](/img/better-css/10.png)
+
+图10
+
+这样做存在的问题是：第一个楼层就没有上边距了，最后一个楼层下边距过大；同时如果有楼层有背景色，`margin`部分就不会包含背景色。
+
+如果上下边距都加`margin`，那么会存在外边距合并现象。
+
+那么只能使用`padding`来实现，如图11
+
+``` css
+    .widget-floor-tp3-style1{
+        padding:20px 0;
+    }
+    .widget-floor-tp3-style2{
+        padding:20px 0;
+    }
+    .widget-floor-tp3-style3{
+        padding:20px 0;
+    }
+
+``` 
+
+![image](/img/better-css/11.png)
+图11
+
+这样做好像已经达到我们的效果了，再想想看会不会有其它情况出现。
+
+如果楼层添加了文字模块作为标题，那么标题和下面内容的间距是不是太大了点，如图12
+
+![image](/img/better-css/12.png)
+图12
+
+那么我们可以把上边距调小，下边距增大，如图13
+
+``` css
+    .widget-floor-tp3-style1{
+        padding:10px 0 30px;
+    }
+    .widget-floor-tp3-style2{
+        padding:10px 0 30px;
+    }
+    .widget-floor-tp3-style3{
+        padding:10px 0 30px;
+    }
+
+``` 
+
+![image](/img/better-css/13.png)
+图13
+
+> 正常情况下空白建议首先考虑使用padding去填充。其次我们在使用的时候需要多去考虑其场景的变化，看看我们的做的是否适合能考虑到的所有场景。
+
+
+
+
+
+
 
