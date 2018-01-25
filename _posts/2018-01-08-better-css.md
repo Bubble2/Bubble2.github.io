@@ -198,6 +198,12 @@ h3{
     }
 ```
 
+该加的样式要添加，下图这个`p`标签得添加`line-height`
+![image](/img/better-css/27.png)
+
+不该加的样式不要加，外层已经定了宽度，你在里面又定了一个宽度还超过了外层的宽度。
+![image](/img/better-css/28.png)
+
 #### 二、关于`margin`和`padding`的使用
 
 ![image](/img/better-css/9.png)
