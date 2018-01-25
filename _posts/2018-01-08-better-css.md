@@ -315,7 +315,7 @@ h3{
 
 1、影响元素的宽度
 
-如果元素<b>不脱离文档流</b>、<b>不使用`float`</b>、`width`为`auto`的话，给元素添加`margin-left`或者`margin-right`为负值时，都会增加元素自身的宽度。
+如果元素不存在`width`或者`width`为`auto`的话，给元素添加`margin-left`或者`margin-right`为负值时，都会增加元素自身的宽度。
 
 运用场景 <a href="https://codepen.io/Bubble2/pen/WdWrPP" target="_blank">栗子点我</a>
 
@@ -325,6 +325,37 @@ h3{
 
 ![image](/img/better-css/16.png)
 图16
+
+----
+
+对于`margin-top`,负值不会增加元素的高度,只会产生向上移动。
+运用场景 <a href="https://codepen.io/Bubble2/pen/ZvdYQo" target="_blank">栗子点我</a>
+
+没有使用`margin-top`负值
+![image](/img/better-css/21.png)
+
+使用了`margin-top:-20px`后高度没有变化，只是元素向上偏移了20个像素
+![image](/img/better-css/22.png)
+
+----
+
+对于`margin-bottom`,负值不会产生元素的位移，但是会减少元素自身的供`css`读取的高度
+
+没有使用`margin-bottom`负值
+![image](/img/better-css/23.png)
+
+使用了`margin-bottom:-20px`后，元素的高度没有变化，但是此时，外层`div`读取到里面盒子的高度减少了`20px`，也就是我们说的供`css`读取到的高度减少了
+
+![image](/img/better-css/24.png)
+
+运用场景1<a href="https://codepen.io/Bubble2/pen/baPNvY" target="_blank">栗子点我</a>
+
+使用`margin-bottom`前，最后一个`li`的下边框和外层`div`的下边框并列在一起底部就会出现两个边框
+![image](/img/better-css/25.png)
+
+在`ul`上使用`margin-bottom:-1px`，使得`ul`供外层读取到的高度减少`1px`
+![image](/img/better-css/26.png)
+
 
 2、对浮动元素的影响
 
@@ -341,6 +372,15 @@ h3{
 运用场景2-中间自适应两边固定布局  <a href="https://codepen.io/Bubble2/pen/qpwqxx" target="_blank">栗子点我</a>
 
 ![image](/img/better-css/19.png)
+
+3、对绝对定位的影响
+
+对于绝对定位，负margin会基于绝对定位的位置再作偏移。
+如果绝对绝对定位的元素宽高是固定的，那么可以通过这个方法来居中
+
+<a href="https://codepen.io/Bubble2/pen/KZLKby" target="_blank">栗子点我</a>
+
+![image](/img/better-css/20.png)
 
 
 
