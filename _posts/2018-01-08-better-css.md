@@ -159,7 +159,7 @@ h3{
 
 ![image](/img/better-css/32.gif)
 
-css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处理方式和`ie6`以前的怪异盒模型类似，如下图，元素的`width`和`height`包括了元素的`content+padding+border`。
+css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处理方式和`ie`的怪异盒模型类似，如下图，元素的`width`和`height`包括了元素的`content+padding+border`。
 
 ![image](/img/better-css/33.gif)
 
