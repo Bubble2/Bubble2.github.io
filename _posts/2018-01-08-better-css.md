@@ -368,7 +368,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 ----
 
-对于`margin-bottom`,负值不会产生元素的位移，但是会减少元素自身的供`css`读取的高度
+对于`margin-bottom`,负值不会产生元素的位移，但是会减少元素自身的供`css`读取的高度，<a href="https://codepen.io/Bubble2/pen/JpRwmV" target="_blank">栗子点我</a>
 
 没有使用`margin-bottom`负值
 ![image](/img/better-css/23.png)
