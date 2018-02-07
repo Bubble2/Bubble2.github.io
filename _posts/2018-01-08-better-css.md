@@ -146,6 +146,23 @@ h3{
 }
 ```
 
+
+### 关于盒模型
+
+![image](/img/better-css/31.png)
+
+<b>概念？</b>
+
+`w3school`官网称之为`css`框模型（`Box Model`），其规定了元素框处理元素内容（`content`）、内边距（`padding`）、边框（`border`）、外边距（`margin`）的方式。
+
+下面是标准的盒模型，如下图，元素的`width`和`height`只包含元素的`content`。
+
+![image](/img/better-css/32.gif)
+
+css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处理方式和`ie6`以前的怪异盒模型类似，如下图，元素的`width`和`height`包括了元素的`content+padding+border`。
+
+![image](/img/better-css/33.gif)
+
 ### 如何更好地去书写`css`
 
 #### 一、关于`css`属性的书写
