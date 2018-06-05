@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "2017-08-14-react-lesson1"
+title:      "react入门，jsx&props&state"
 date:       "2017-08-14 "
 author:     "guozhaodong"
 ---

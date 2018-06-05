@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "2018-01-08-better-css"
+title:      "如何更好地写css"
 date:       "2018-01-08 "
 author:     "guozhaodong"
 ---

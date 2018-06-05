@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "2017-09-07-immutable"
+title:      "immutable"
 date:       "2017-09-07 "
 author:     "guozhaodong"
 ---

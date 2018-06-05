@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "2017-07-31-es6-destructuring"
+title:      "es6解构"
 date:       "2017-07-31 "
 author:     "guozhaodong"
 ---

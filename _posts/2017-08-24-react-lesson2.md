@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "2017-08-24-react-lesson2"
+title:      "reac生命周期"
 date:       "2017-08-24 "
 author:     "guozhaodong"
 ---

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "2017-07-31-es6-function"
+title:      "es6函数"
 date:       "2017-07-31 "
 author:     "guozhaodong"
 ---
