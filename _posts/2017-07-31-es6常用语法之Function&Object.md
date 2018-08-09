@@ -5,8 +5,6 @@ date:       "2018-08-08 "
 author:     "guozhaodong"
 ---
 
-# es6常用语法之Function&Object
-
 ## 函数的默认参数设置
 
 ### es5设置默认参数
@@ -172,7 +170,7 @@ author:     "guozhaodong"
 
 ### 箭头函数的一些特性
 
-· `this`的指向是<b>定义</b>函数时候的上下文环境所定的，不能用`call`,`apply`、`bind`等方法去改变。
+1、`this`的指向是<b>定义</b>函数时候的上下文环境所定的，不能用`call`,`apply`、`bind`等方法去改变。
 
 ``` js
     const cFunc = () => {
@@ -182,7 +180,7 @@ author:     "guozhaodong"
     cFunc.call({a:1});
 ```
 
-· 不能用`new`关键字实例化，也没有原型
+2、不能用`new`关键字实例化，也没有原型
 
 ``` js
     const cFunc = () => {
@@ -194,7 +192,7 @@ author:     "guozhaodong"
     cFunc.prototype
 ```
 
-· 不支持`arguments`对象
+3、不支持`arguments`对象
 
 ``` js
     const cFunc = (x,y) => {
@@ -320,7 +318,7 @@ author:     "guozhaodong"
 
 ### `Object.assign()`
 
-将源对象上的所有对象合并，复制到目标对象上，类似于`jquery`的`$.extend()`
+将源对象上的所有对象合并，复制到目标对象上，类似于`jquery`的`$.extend()`，但是注意它只能用来进行浅拷贝
 
 ``` js
     const sourceObj1 = {
