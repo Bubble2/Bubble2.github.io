@@ -362,6 +362,70 @@ author:     "guozhaodong"
     Object.entries(obj)
 ```
 
+### 展开运算符
+
+展开运算符是把对象或数组展开成一个序列， 相当于函数rest参数的逆运算
+
+展开对象
+``` js
+    const obj = {
+        a: 1,
+        b: 'x',
+        c: 'xiaoming'
+    }
+
+    const obj2 = {
+        x: 'nihao',
+        y: 44,
+        ...obj
+    }
+
+    console.log(obj2);
+```
+
+展开数组
+
+``` js
+    const arr = [2, 76, 33, 8];
+    const arr2 = [1, 3, 5, ...arr];
+    console.log(arr2);
+```
+
+可以用于合并对象，类似于`Object.assign()`
+
+``` js
+    const obj1 = {
+        a: 1,
+        b: 2
+    }
+    const obj2 = {
+        a: 3,
+        d: 4
+    }
+    const obj3 = {...obj1, ...obj2};
+```
+
+和解构一起使用
+
+``` js
+    const {x, y, ...z} = {x: 1, y: 2, a: 33, b: 4} 
+    console.log(z)
+```
+
+求最大值、最小值
+
+``` js
+    const arr = [1, 3, 4, 55, 66, 31]
+    
+    //es5用apply可以实现，但是很难让人看懂代码的真实意图
+    Math.max.apply(Math, arr);
+    
+    //es6
+    Math.max(...arr);
+```
+
+
+
 
 
 
