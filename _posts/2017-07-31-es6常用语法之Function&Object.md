@@ -415,7 +415,7 @@ author:     "guozhaodong"
     console.log(z)
 ```
 
-求最大值、最小值
+运用：求数组中最大值、最小值
 
 ``` js
     const arr = [1, 3, 4, 55, 66, 31]
