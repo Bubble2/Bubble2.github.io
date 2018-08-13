@@ -75,7 +75,7 @@ author:     "guozhaodong"
         console.log(x, y);
     }
 
-    defaultArgAndDest({x: 3, y: 8}); 
+    defaultArgAndDest({x: 3, y: 8});  // const {x: x = 0, y: y = 0} = {x: 3, y: 8}
     defaultArgAndDest({x: 3}); 
     defaultArgAndDest({}); 
     defaultArgAndDest(); 
@@ -130,11 +130,14 @@ author:     "guozhaodong"
 ## 箭头函数
 
 ``` js
+
+    //es5
     const fn = function(){
         console.log('I am a fn')
     }
     fn();
 
+    //es6
     const arrowFn = () => {
         console.log('I am a arrowFn')
     }
@@ -160,7 +163,7 @@ author:     "guozhaodong"
     const arrowFn3 = x => x
     arrowFn3(1)
 
-    //
+    //如果函数体返回的是一个对象
     const arrowFn4 = () => ({
         x:1,
         y:2
