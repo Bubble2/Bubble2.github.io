@@ -9,7 +9,7 @@ author:     "guozhaodong"
 
 ### 为什么需要解构赋值？
 
-``` js
+``` JavaScript
 
     //es5
 
@@ -36,7 +36,7 @@ author:     "guozhaodong"
 
 ### 使用解构方式定义变量的时候必须初始化
 
-``` js
+``` JavaScript
     var {a,b};
     let {a,b};
     const {a,b}
