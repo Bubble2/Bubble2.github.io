@@ -106,10 +106,10 @@ class App extends Component{
 
 #### 生命周期整体流程
 
-![image](../img/react/20170825114018.jpg)
+![image](../assets/img/react/20170825114018.jpg)
 
 `createClass` 和 `es6`的`classes`构建组件，生命周期稍有不同
 
-![image](../img/react/20170825114801.jpg)
+![image](../assets/img/react/20170825114801.jpg)
 
 

@@ -43,7 +43,7 @@ author:     "guozhaodong"
 
     //以上三种方式都会报这个错误 Uncaught SyntaxError: Missing initializer in destructuring declaration
 ```
-![image](/img/es6-destructuring/1500607155.jpg)
+![image](/assets/img/es6-destructuring/1500607155.jpg)
 
 ### 
 

@@ -9,7 +9,7 @@ author:     "guozhaodong"
 
 在`javascript`中对象都是引用类型的，新的对象引用了原始对象，改变新对象原始对象也会改变。
 
-``` js
+``` JavaScript
 let foo = {a:1}
 let bar = foo;
 bar.a=2;
@@ -26,7 +26,7 @@ console.log('foo.a:'+foo.a);
 
 持久化数据或不可变数据，可以理解为另一种数据结构的库。通过`Immutable`创建出来的数据，一旦被创建就不能再被更改；对`Immutable`对象的任何添加、修改、删除操作都会返回一个新的`Immutable`对象。
 
-``` js
+``` JavaScript
 import {Map} from 'immutable';
 
 //Map
@@ -40,16 +40,16 @@ console.log('map2.a:'+map2.get('a'))
 
 `Immutable`的实现原理是`Persistent Data Structure`（持久化数据结构），即使用旧数据创建新数据时，会保证旧数据可用且不变，同时为了避免`deepCopy`把所有节点都复制一遍带来的性能损耗，`Immutable`使用了`Structural Sharing`（结构共享），即如果对象数中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享，如下图：
 
-![image](/img/immutable/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif)
+![image](/assets/img/immutable/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif)
 
 深拷贝
-![image](/img/immutable/1234637-4f59ca4e0ff61af4.png)
+![image](/assets/img/immutable/1234637-4f59ca4e0ff61af4.png)
 
 浅拷贝
-![image](/img/immutable/1234637-f14424d82fc9855e.png)
+![image](/assets/img/immutable/1234637-f14424d82fc9855e.png)
 
 `immutable`方式
-![image](/img/immutable/1234637-a58fde3fc627a0dd.png)
+![image](/assets/img/immutable/1234637-a58fde3fc627a0dd.png)
 
 
 ### `immutable`的`api`介绍
@@ -74,14 +74,14 @@ console.log('map2.a:'+map2.get('a'))
 
 `fromJS()`：接受原生`js`类型数据，返回`immutable`类型数据。
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 console.log(Immutable.fromJS([1,{a:2},{b:[3,4,5]}]))
 ```
 
 `is()`：接受两个`immutable`数据,返回一个布尔值，表示这两个数据是否相等
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 const obj1 = Map({a:1,b:2});
 const obj2 = Map({a:1,b:2});
@@ -91,7 +91,7 @@ console.log(Immutable.is(obj1,obj2));
 
 `hash()`：接受一个`immutable`数据,返回一个31位的整数，这个值就是每一个`immutable`数据的唯一表示，用来判断两个数据是否相等的。
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 const obj1 = Map({a:1,b:2});
 const obj2 = Map({a:1,b:2});
@@ -101,21 +101,21 @@ console.log('obj2.hash:'+Immutable.hash(obj2));
 
 `List()`：接受原生`js`的`Array`，返回`immutable`的`List`
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 console.log(Immutable.List([1,2,[3,4]]))
 ```
 
 `Map()`：接受原生`js`的`Object`，返回`immutable`的`Map`
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 console.log(Immutable.Map({a:1,b:{c:2}}))
 ```
 
 `toJS()`：接受`immutable`类型数据，返回原生`js`类型数据，与`fromJS()`相反。
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 const data1 = Immutable.fromJS([1,2,3])
 console.log(data1.toJS())
@@ -123,7 +123,7 @@ console.log(data1.toJS())
 
 `set()`：接受两个参数，第一个是`List`的索引值或者`Map`的`key`值，第二个是需要设定的值；返回一个新的`List`或者`Map`。
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 const list = Immutable.List([1,2,3])
 console.log(list.set(3,4))
@@ -134,7 +134,7 @@ console.log(map.set('d',4))
 
 `get()`：接受一个参数，`List`的索引值或者`Map`的`key`值
 
-``` js
+``` JavaScript
 import Immutable from 'immutable';
 const list = Immutable.List([1,2,3])
 console.log(list.get(2))  //3
@@ -145,7 +145,7 @@ console.log(map.get('a'))  //1
 
 用一张图来罗列下`immutable`数据之前的继承关系
 
-![image](/img/immutable/TM20170906144039.png)
+![image](/assets/img/immutable/TM20170906144039.png)
 
 
 ### 在`React`中使用`immutable`
@@ -166,7 +166,7 @@ console.log(map.get('a'))  //1
 
 二、丰富的api
 
-``` js
+``` JavaScript
 //普通的的浅拷贝
 var state = Object.assign({},state,{
     key:value
@@ -182,7 +182,7 @@ var state = state.set('key',value);
 `React`组件生命周期中有一个钩子函数`shouldComponentUpdate`方法,在这里面对数据进行比较，如果数据没有变化就不继续往下执行。
 
 没有优化之前
-``` js
+``` JavaScript
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -280,7 +280,7 @@ ReactDOM.render(<ParentComponent />,document.getElementById('root'))
 
 方法一：可以通过<a href="https://facebook.github.io/react/docs/pure-render-mixin.html" target="_blank">`PureRenderMixin`</a>来做比较，但是这种方式只能做浅比较
 
-``` js
+``` JavaScript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -383,7 +383,7 @@ ReactDOM.render(<ParentComponent />,document.getElementById('root'))
 
 方法二：通过`immutable`优化
 
-``` js
+``` JavaScript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {is,fromJS } from 'immutable';
@@ -508,7 +508,7 @@ ReactDOM.render(<ParentComponent />,document.getElementById('root'))
 ### 如何结合`redux`项目使用？ 
 
 使用浅拷贝方式
-``` js
+``` JavaScript
 class Counter extends React.Component{
     
     render(){
@@ -556,7 +556,7 @@ store.subscribe(render)
 ```
 
 使用`immutable`方式
-``` js
+``` JavaScript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';

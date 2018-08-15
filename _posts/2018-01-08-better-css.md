@@ -22,7 +22,7 @@ margin:10px 5px 15px 5px = margin:10px 5px 15px
 
 ```
 
-![image](/img/better-css/1.png)
+![image](/assets/img/better-css/1.png)
 
 上面的`padding`可以简写成
 
@@ -40,19 +40,19 @@ padding:21px 25px 0 28px;
 #ff00ee = #f0e
 ```
 
-![image](/img/better-css/2.png)
+![image](/assets/img/better-css/2.png)
 
 #### 二、尽量去使用通用的东西，不要重复造轮子
 
 1、如按钮(`ui_button`)、提示(`ui_tip`)、弹框(`ui_pop`)、图标(`ui_icon`)等都有现成的组件,如果没有特殊情况都可以使用。
 
-![image](/img/better-css/3.png)
+![image](/assets/img/better-css/3.png)
 
 上面的栗子可以把`btn bulletin-more`改成`btn btn-primary btn-xl`
 
 2、sass中也有一些公共的方法（`mixin`，`function`等）
 
-![image](/img/better-css/4.png)
+![image](/assets/img/better-css/4.png)
 
 上面的文字超出指定宽度出现省略号的效果也有现成的`mixin`
 
@@ -87,18 +87,18 @@ h3{
 
 （4）避免使用方位（`left`、`right`）、颜色（`red`）等单词去组合命名（除非是单纯地原子样式）
 
-![image](/img/better-css/6.png)
+![image](/assets/img/better-css/6.png)
 
 （5）避免使用中文拼音去命名
 
-![image](/img/better-css/7.png)
+![image](/assets/img/better-css/7.png)
 
 下面说一个命名的注意点：
 
 如果当前写的样式是一个通用的样式（很多页面会引用到），那么你的`class`命名要比较特殊、复杂一点，这样做可以尽量防止页面其它`class`与它命名冲突。如果当前写的样式是具体某个页面才会用到的，那么你只要保证在当前页面是唯一的就行了，所以命名可以稍微简单一些。
 
 举个栗子：
-![image](/img/better-css/5.png)
+![image](/assets/img/better-css/5.png)
 
 上面这个编辑浮层`class`为`widget-editable-layer`采用了三个单词进行连接，也可以尝试一下使用`BEM`方式命名。
 
@@ -107,7 +107,7 @@ h3{
 不论是`css`还是`sass`中的属性名称正常情况下不要超过三个层级
 特别是`sass`可以属性嵌套，很多人都喜欢一层套一层，最后套了很多层
 
-![image](/img/better-css/8.png)
+![image](/assets/img/better-css/8.png)
 
 ``` scss
 //bad
@@ -149,7 +149,7 @@ h3{
 
 ### 关于盒模型
 
-![image](/img/better-css/31.png)
+![image](/assets/img/better-css/31.png)
 
 <b>概念？</b>
 
@@ -157,11 +157,11 @@ h3{
 
 下面是标准的盒模型，如下图，元素的`width`和`height`只包含元素的`content`。
 
-![image](/img/better-css/32.gif)
+![image](/assets/img/better-css/32.gif)
 
 css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处理方式和`ie`的怪异盒模型类似，如下图，元素的`width`和`height`包括了元素的`content+padding+border`。
 
-![image](/img/better-css/33.gif)
+![image](/assets/img/better-css/33.gif)
 
 ### 如何更好地去书写`css`
 
@@ -216,14 +216,14 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 ```
 
 该加的样式要添加，下图这个`p`标签得添加`line-height`
-![image](/img/better-css/27.png)
+![image](/assets/img/better-css/27.png)
 
 不该加的样式不要加，外层已经定了宽度，你在里面又定了一个宽度还超过了外层的宽度。
-![image](/img/better-css/28.png)
+![image](/assets/img/better-css/28.png)
 
 #### 二、关于`margin`和`padding`的使用
 
-![image](/img/better-css/9.png)
+![image](/assets/img/better-css/9.png)
 
 这个空白我到底是用`margin`还是`padding`？加在哪个div上面呢？
 
@@ -254,7 +254,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
     }
 ```
 
-![image](/img/better-css/10.png)
+![image](/assets/img/better-css/10.png)
 
 图10
 
@@ -277,14 +277,14 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 ``` 
 
-![image](/img/better-css/11.png)
+![image](/assets/img/better-css/11.png)
 图11
 
 这样做好像已经达到我们的效果了，再想想看会不会有其它情况出现。
 
 如果楼层添加了文字模块作为标题，那么标题和下面内容的间距是不是太大了点，如图12
 
-![image](/img/better-css/12.png)
+![image](/assets/img/better-css/12.png)
 图12
 
 那么我们可以把上边距调小，下边距增大，如图13
@@ -302,7 +302,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 ``` 
 
-![image](/img/better-css/13.png)
+![image](/assets/img/better-css/13.png)
 图13
 
 > 正常情况下空白建议首先考虑使用padding去填充。其次我们在使用的时候需要多去考虑其场景的变化，看看这样做是否能适合所有场景。
@@ -311,7 +311,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 布局的时候要考虑到此处是否会经常修改或变化，如果是则尽量做到自适应,这样后期的修改就会少点。
 
-![image](/img/better-css/14.png)
+![image](/assets/img/better-css/14.png)
 
 ``` css
     //bad
@@ -335,7 +335,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 ```
 
 
-![image](/img/better-css/30.png)
+![image](/assets/img/better-css/30.png)
 
 这个产品图片不要直接只放一个`img`标签（即使用`a`标签包起来），最好在外层再用一个`div`包起来。如果我在图片上面需要加些什么元素，这个时候就得再去修改`html`。(如果有变动尽量不要去修改`html`文件，通过修改`css`去完成)
 
@@ -348,11 +348,11 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 运用场景 <a href="https://codepen.io/Bubble2/pen/WdWrPP" target="_blank">栗子点我</a>
 
-![image](/img/better-css/15.png)
+![image](/assets/img/better-css/15.png)
 
 用了`margin-right`后效果，如图16
 
-![image](/img/better-css/16.png)
+![image](/assets/img/better-css/16.png)
 图16
 
 ----
@@ -361,46 +361,46 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 运用场景 <a href="https://codepen.io/Bubble2/pen/ZvdYQo" target="_blank">栗子点我</a>
 
 没有使用`margin-top`负值
-![image](/img/better-css/21.png)
+![image](/assets/img/better-css/21.png)
 
 使用了`margin-top:-20px`后高度没有变化，只是元素向上偏移了20个像素
-![image](/img/better-css/22.png)
+![image](/assets/img/better-css/22.png)
 
 ----
 
 对于`margin-bottom`,负值不会产生元素的位移，但是会减少元素自身的供`css`读取的高度，<a href="https://codepen.io/Bubble2/pen/JpRwmV" target="_blank">栗子点我</a>
 
 没有使用`margin-bottom`负值
-![image](/img/better-css/23.png)
+![image](/assets/img/better-css/23.png)
 
 使用了`margin-bottom:-20px`后，元素的高度没有变化，但是此时，外层`div`读取到里面盒子的高度减少了`20px`，也就是我们说的供`css`读取到的高度减少了
 
-![image](/img/better-css/24.png)
+![image](/assets/img/better-css/24.png)
 
 运用场景1<a href="https://codepen.io/Bubble2/pen/baPNvY" target="_blank">栗子点我</a>
 
 使用`margin-bottom`前，最后一个`li`的下边框和外层`div`的下边框并列在一起底部就会出现两个边框
-![image](/img/better-css/25.png)
+![image](/assets/img/better-css/25.png)
 
 在`ul`上使用`margin-bottom:-1px`，使得`ul`供外层读取到的高度减少`1px`
-![image](/img/better-css/26.png)
+![image](/assets/img/better-css/26.png)
 
 
 2、对浮动元素的影响
 
 `margin-left:-10px`，元素向左边偏移10个像素，同时后面的元素也跟随向右偏移，如图17
 
-![image](/img/better-css/17.png)
+![image](/assets/img/better-css/17.png)
 图17
 
 
 运用场景1  <a href="https://codepen.io/Bubble2/pen/xpeRbq" target="_blank">栗子点我</a>
 
-![image](/img/better-css/18.png)
+![image](/assets/img/better-css/18.png)
 
 运用场景2-中间自适应两边固定布局  <a href="https://codepen.io/Bubble2/pen/qpwqxx" target="_blank">栗子点我</a>
 
-![image](/img/better-css/19.png)
+![image](/assets/img/better-css/19.png)
 
 3、对绝对定位的影响
 
@@ -409,7 +409,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 <a href="https://codepen.io/Bubble2/pen/KZLKby" target="_blank">栗子点我</a>
 
-![image](/img/better-css/20.png)
+![image](/assets/img/better-css/20.png)
 
 
 

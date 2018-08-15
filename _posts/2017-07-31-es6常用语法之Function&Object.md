@@ -9,7 +9,7 @@ author:     "guozhaodong"
 
 ### es5设置默认参数
 
-``` js
+``` JavaScript
     function defaultArgFn(x){
         x = x || 10;
         console.log(x); 
@@ -26,7 +26,7 @@ author:     "guozhaodong"
 
 ### es6设置默认参数
 
-``` js
+``` JavaScript
     function defaultArgFn(x=10){
         console.log(x); 
     }
@@ -40,7 +40,7 @@ author:     "guozhaodong"
 
 #### 参数默认值不是原始值
 
-``` js
+``` JavaScript
     //是一个变量
     let a = 20;
     function defaultArgFn(x=a){
@@ -70,7 +70,7 @@ author:     "guozhaodong"
 
 ## 参数默认值与解构默认值
 
-``` js
+``` JavaScript
     function defaultArgAndDest({x = 0, y = 0} = {}) {
         console.log(x, y);
     }
@@ -101,7 +101,7 @@ author:     "guozhaodong"
 
 用于获取函数的参数，类似于以前的`arguments`，它会把函数的<b>一个或多个参数序列</b>转换成<b>一个数组</b>
 
-``` js
+``` JavaScript
     //所以参数
     function restFn(...params){
         console.log(params)
@@ -119,7 +119,7 @@ author:     "guozhaodong"
 
 注意：`rest`参数必须是最后一个参数，否则会报错
 
-``` js
+``` JavaScript
     function restFn(x, y, ...params, z){
         console.log(params)
     }
@@ -129,7 +129,7 @@ author:     "guozhaodong"
 
 ## 箭头函数
 
-``` js
+``` JavaScript
 
     //es5
     const fn = function(){
@@ -146,7 +146,7 @@ author:     "guozhaodong"
 
 ### 几种方式
 
-``` js
+``` JavaScript
     //正常参数放在圆括号里，函数体放在箭头后面的花括号里
     const arrowFn1 = (x) => {
         return x
@@ -175,7 +175,7 @@ author:     "guozhaodong"
 
 1、`this`的指向是<b>定义</b>函数时候的上下文环境所定的，不能用`call`,`apply`、`bind`等方法去改变。
 
-``` js
+``` JavaScript
     const cFunc = () => {
         console.log(this)
     }
@@ -185,7 +185,7 @@ author:     "guozhaodong"
 
 2、不能用`new`关键字实例化，也没有原型
 
-``` js
+``` JavaScript
     const cFunc = () => {
         console.log('hello')
     }
@@ -197,7 +197,7 @@ author:     "guozhaodong"
 
 3、不支持`arguments`对象
 
-``` js
+``` JavaScript
     const cFunc = (x,y) => {
         console.log(x,y);
         console.log('arguments:'+arguments)
@@ -209,7 +209,7 @@ author:     "guozhaodong"
 
 ### 关于箭头函数的`this`指向
 
-``` js
+``` JavaScript
     const obj1 = {
         title:'xiaoming',
         sayTitle:function(){
@@ -231,7 +231,7 @@ author:     "guozhaodong"
 
 ```
 
-``` js
+``` JavaScript
      function Func(){
         this.a = 1;
         const bFunc = function() {
@@ -259,7 +259,7 @@ author:     "guozhaodong"
 ## 对象属性和方法简写
 
 ### 属性的简写
-``` js
+``` JavaScript
     //es5
     function getVal(x, y){
         return {
@@ -282,7 +282,7 @@ author:     "guozhaodong"
 
 ### 方法的简写
 
-``` js
+``` JavaScript
     //es5
     const person = {
         name: 'xiaoming',
@@ -302,7 +302,7 @@ author:     "guozhaodong"
 
 ## 计算属性名
 
-``` js
+``` JavaScript
     //es5
     const obj = {
         firstName: 'jj',
@@ -323,7 +323,7 @@ author:     "guozhaodong"
 
 将源对象上的所有对象合并，复制到目标对象上，类似于`jquery`的`$.extend()`，但是注意它只能用来进行浅拷贝
 
-``` js
+``` JavaScript
     const sourceObj1 = {
         a: 1
     }
@@ -347,7 +347,7 @@ author:     "guozhaodong"
 
 ### `Object.keys()`(es5已经有的属性)、`Object.values()`、`Object.entries()`
 
-``` js
+``` JavaScript
     
     const obj = {
         a: 1,
@@ -370,7 +370,7 @@ author:     "guozhaodong"
 展开运算符是把对象或数组展开成一个序列， 相当于函数rest参数的逆运算
 
 展开对象
-``` js
+``` JavaScript
     const obj = {
         a: 1,
         b: 'x',
@@ -388,7 +388,7 @@ author:     "guozhaodong"
 
 展开数组
 
-``` js
+``` JavaScript
     const arr = [2, 76, 33, 8];
     const arr2 = [1, 3, 5, ...arr];
     console.log(arr2);
@@ -396,7 +396,7 @@ author:     "guozhaodong"
 
 可以用于合并对象，类似于`Object.assign()`
 
-``` js
+``` JavaScript
     const obj1 = {
         a: 1,
         b: 2
@@ -410,14 +410,14 @@ author:     "guozhaodong"
 
 和解构一起使用
 
-``` js
+``` JavaScript
     const {x, y, ...z} = {x: 1, y: 2, a: 33, b: 4} 
     console.log(z)
 ```
 
 运用：求数组中最大值、最小值
 
-``` js
+``` JavaScript
     const arr = [1, 3, 4, 55, 66, 31]
     
     //es5用apply可以实现，但是很难让人看懂代码的真实意图
