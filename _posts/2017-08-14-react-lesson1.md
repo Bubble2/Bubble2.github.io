@@ -2,6 +2,7 @@
 layout:     post
 title:      "react入门，jsx&props&state"
 date:       "2017-08-14 "
+categories: "react"
 author:     "guozhaodong"
 ---
 

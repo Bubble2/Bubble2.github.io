@@ -2,6 +2,7 @@
 layout:     post
 title:      "immutable"
 date:       "2017-09-07 "
+categories: "react"
 author:     "guozhaodong"
 ---
 

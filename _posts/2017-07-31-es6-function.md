@@ -2,6 +2,7 @@
 layout:     post
 title:      "es6函数"
 date:       "2017-07-31 "
+categories: "es6"
 author:     "guozhaodong"
 ---
 
