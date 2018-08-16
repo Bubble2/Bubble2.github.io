@@ -2,7 +2,7 @@
 layout:     post
 title:      "如何更好地写css"
 date:       "2018-01-08 "
-categories: "css"
+tags:       "css"
 author:     "guozhaodong"
 ---
 

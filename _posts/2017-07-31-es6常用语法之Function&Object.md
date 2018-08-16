@@ -2,7 +2,7 @@
 layout:     post
 title:      "es6常用语法之Function&Object"
 date:       "2018-08-08 "
-categories: "es6"
+tags:       "js es6"
 author:     "guozhaodong"
 ---
 
