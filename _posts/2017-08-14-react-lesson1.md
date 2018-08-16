@@ -49,7 +49,7 @@ author:     "guozhaodong"
 
 > 一种JavaScript的语法扩展,看起来像模板语言，和我们平常写的html也十分相似，其实完全是js内部实现的。
 
-``` jsx
+``` Javascript
 
 //传统的html标签
 const element = <div>I am a div tag</div>
@@ -72,12 +72,12 @@ const MyComponent=(
 
 > 如果不用jsx也是可以的，jsx本质上是为`React.createElement(type,props,...children)`方法提供的语法糖。
 
-``` jsx
+``` Javascript
 <ButtonComponent size="xl" color="primary">我是一个小小的按钮组件</ButtonComponent>
 ```
 
 上面的jsx语法编译以后就是下面这个样子的
-``` jsx
+``` Javascript
 React.createElement(
   ButtonComponent,
   {size:'xl',color:'primary'},
@@ -92,18 +92,18 @@ React.createElement(
 标签名决定了`React`元素的类型
 
 1、小写字母开头的标签表示DOM元素
-``` jsx
+``` Javascript
 <div></div>
 <span></span>
 ```
 
 2、大写字母开头的标签表示一个组件元素
-``` jsx
+``` Javascript
 <MyComponent>我是一个react组件</MyComponent>
 ```
 
 ##### 最外层只能有一个标签
-``` jsx
+``` Javascript
 //错误
 const element=(
     <span>hello</span>
@@ -134,7 +134,7 @@ const element=(
 
 ##### 支持命名空间，可以用点表示法引用`React`组件
 
-``` jsx
+``` Javascript
 import React from 'react';
 
 const NameSpaceComponent = {
@@ -154,7 +154,7 @@ const BlueDatePicker = () => {
 
 因为是`JavaScript`的语法，所以`JavaScript`的注释依然可以使用，但是有点需要注意，在一个组件的内部使用注释要用`{}`包起来
 
-``` jsx
+``` Javascript
 const App = (
   // 这个是一个单行注释
 
@@ -185,14 +185,14 @@ DOM元素的属性是标准规范属性，同时采用驼峰命名的方式来�
 
 ##### 传递`JavaScript`表达式
 
-``` jsx
+``` Javascript
 <PropExpression title={1+2} />
 <PropExpression title={window.name?window.name:'window.name is null'} />
 ```
 
 ##### 传递字符串常量
 
-``` jsx
+``` Javascript
 //下面两种方式是相等的
 <PropString msg="hello1" />
 <PropString msg={"hello2"} />
@@ -201,13 +201,13 @@ DOM元素的属性是标准规范属性，同时采用驼峰命名的方式来�
 
 ##### 传递组件
 
-``` jsx
+``` Javascript
 <PropComponent right={<PropComponentRight />} left={<PropComponentLeft />} />
 ```
 
 ##### 传递布尔值
 
-``` jsx
+``` Javascript
 //默认不传则为true，以下两种方式相等
 <PropBool msg />//不建议
 <PropBool msg={true} />//建议
@@ -216,7 +216,7 @@ DOM元素的属性是标准规范属性，同时采用驼峰命名的方式来�
 
 ##### 扩展属性
 
-``` jsx
+``` Javascript
 const PropSpread = (props) => {
   return (
     <div>
@@ -241,13 +241,13 @@ const MyApp=()=>{
 
 ##### 可以接受字符串常量
 
-``` jsx
+``` Javascript
 <ChildString>I am ChildString's children</ChildString>
 ```
 
 ##### 可以接受子组件
 
-``` jsx
+``` Javascript
 <ChildComponent>
     <FirstChild></FirstChild>
     <SecondChild></SecondChild>
@@ -256,7 +256,7 @@ const MyApp=()=>{
 
 ##### 可以接受`JavaScript`表达式
 
-``` jsx
+``` Javascript
 <ChildExpression>{'Hello'}</ChildExpression>
 <ChildExpression>{1+2}</ChildExpression>
 <ChildExpression>{window.name?<FirstChild />:<SecondChild />}</ChildExpression>
@@ -264,7 +264,7 @@ const MyApp=()=>{
 
 ##### 可以通过`props.children`来访问该组件的孩子
 
-``` jsx
+``` Javascript
 const App=(props)=>{
   return(
     <div>{props.children}</div>
@@ -280,7 +280,7 @@ const MyApp=()=>{
 
 ##### 布尔值、Null 和 Undefined 被忽略
 
-``` jsx
+``` Javascript
 //一下几种方式都是等价的
 <div />
 <div></div>
@@ -292,7 +292,7 @@ const MyApp=()=>{
 
 
 除了`false`以外,0、""、null、undefined、NaN,也会认为是假，但是它们会把自身输出
-``` jsx
+``` Javascript
 const FalsyComponent = () => {
   return (
       <div>
@@ -317,7 +317,7 @@ return(
 
 最传统、也是兼容性最好的方法，`v0.14`版本之前，官方唯一指定的组件写法，但是目前版本已经不建议去使用了。
 
-``` jsx
+``` Javascript
 const Button = React.createClass({
   getDefaultProps(){
     return {
@@ -339,7 +339,7 @@ const Button = React.createClass({
 
 方法二、`ES6 classes`
 
-``` jsx
+``` Javascript
 class Button extends React.Component{
   constructor(props){
     super(props);
@@ -365,7 +365,7 @@ class Button extends React.Component{
 
 使用无状态函数构建的是无状态的组件,这个是`v0.14`版本之后新增的方式，
 
-``` jsx
+``` Javascript
 function Button({color='blue',text='Confirm'}){
   return (
     <button className={`btn btn-${color}`}>
@@ -379,7 +379,7 @@ function Button({color='blue',text='Confirm'}){
 
 #### 组件的渲染
 
-``` jsx
+``` Javascript
 function ComponentRender(){
   return <h1>把这个组件渲染到页面中</h1>
 }
@@ -392,7 +392,7 @@ ReactDOM.render(
 
 #### 组合组件
 
-``` jsx
+``` Javascript
 
 function SingleComponent(props){
   return <h1>{props.name}组件</h1>
@@ -416,7 +416,7 @@ ReactDOM.render(
 
 #### 提取组件
 
-``` jsx
+``` Javascript
 function Comment(props){
   return(
     <div className="comment">
@@ -433,7 +433,7 @@ function Comment(props){
 
 对用户头像部分进行提取
 
-``` jsx
+``` Javascript
 function Avatar(props){
   return(
     <img className="avatar" src={props.user.avatarUrl} alt={props.user.name} />
@@ -456,7 +456,7 @@ function Comment(props){
 
 用户信息部分进行提取
 
-``` jsx
+``` Javascript
 function Avatar(props){
   return(
     <img className="avatar" src={props.user.avatarUrl} alt={props.user.name} />
@@ -498,7 +498,7 @@ function Comment(props){
 
 ##### 父组件改变子组件的`props`
 
-``` jsx
+``` Javascript
 const ChildComponent = (props) =>{
     return(
         <div>{props.value}</div>
@@ -533,7 +533,7 @@ export class ParentComponent extends React.Component{
 
 ##### 子组件改变父组件的`state`
 
-``` jsx
+``` Javascript
 class ChildComponent2 extends React.Component{
     constructor(props){
       super(props);
@@ -582,7 +582,7 @@ export class ParentComponent2 extends React.Component{
 
 ##### 使用`PropTypes`进行类型检查
 
-``` jsx
+``` Javascript
 import PropTypes from 'prop-types';
 
 const PropTypesComponent = (props) =>{
@@ -610,7 +610,7 @@ PropTypesComponent.propTypes={
 
 不要直接显示地更新组件的状态
 
-``` jsx
+``` Javascript
 //这种方式不会重新渲染组件
 this.state.msg="Hi";
 
@@ -623,7 +623,7 @@ this.setState({
 状态的更新可能是异步的，`React`可以将多个`setState()`调用合并成一个调用来提高性能。因为`this.props`和`this.state`可能是异步更新的，所以不应该依赖这些值来计算下一个状态。
 
 
-``` jsx
+``` Javascript
 //不建议这么使用
 this.setState({
     counter: this.state.counter + 1 
@@ -645,13 +645,13 @@ this.setState((prevState)=>{
 
 `setState()`用法
 
-``` jsx
+``` Javascript
 setState(updater[,callback]);
 ```
 
 第一个参数`updater`可以直接传递一个<strong>对象</strong>，也可以传递一个<strong>函数</strong>，但是这个函数还是得返回一个对象，同时这个函数会带两个参数，分别是前一个状态`prevState`和属性`props`。
 
-``` jsx
+``` Javascript
 //对象
 this.setState({
   msg:'hello'
