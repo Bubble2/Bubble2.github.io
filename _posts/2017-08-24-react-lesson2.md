@@ -13,7 +13,7 @@ author:     "guozhaodong"
 
 组件的挂载是最基本的过程，这个过程主要是组件状态的初始化
 
-``` jsx
+``` Javascript
 import React,{Compoennt,PropTypes} from 'react';
 
 class App extends Component{
@@ -52,7 +52,7 @@ class App extends Component{
 
 组件卸载非常简单，只有`componentWillUnmount`这一个卸载前状态
 
-``` jsx
+``` Javascript
 import React , {Component} from 'react';
 
 class App extends Component{
@@ -72,7 +72,7 @@ class App extends Component{
 1、父组件向下传递`props`
 2、组件自身执行`setState`方法
 
-``` jsx
+``` Javascript
 import React,{Component} from 'react';
 
 class App extends Component{
@@ -106,10 +106,10 @@ class App extends Component{
 
 #### 生命周期整体流程
 
-![image](../assets/img/react/20170825114018.jpg)
+![image](/assets/img/react/20170825114018.jpg)
 
 `createClass` 和 `es6`的`classes`构建组件，生命周期稍有不同
 
-![image](../assets/img/react/20170825114801.jpg)
+![image](/assets/img/react/20170825114801.jpg)
 
 
