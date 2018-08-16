@@ -2,7 +2,7 @@
 layout:     post
 title:      "es6函数"
 date:       "2017-07-31 "
-tags:       "js es6"
+tags:       "javascript es6"
 author:     "guozhaodong"
 ---
 

@@ -2,7 +2,7 @@
 layout:     post
 title:      "immutable"
 date:       "2017-09-07 "
-tags:       "js immutable"
+tags:       "javascript immutable"
 author:     "guozhaodong"
 ---
 

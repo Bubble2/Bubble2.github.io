@@ -2,7 +2,7 @@
 layout:     post
 title:      "react生命周期"
 date:       "2017-08-24 "
-tags:       "js react"
+tags:       "javascript react"
 author:     "guozhaodong"
 ---
 
