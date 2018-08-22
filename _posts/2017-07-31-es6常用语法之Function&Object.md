@@ -160,7 +160,7 @@ author:     "guozhaodong"
     }
     arrowFn2(1);
 
-    //如果函数体只有一行代码，可以直接省略掉花括号，把代码写到一行，同时会直接return函数体 
+    //如果函数体为一个表达式，可以直接省略掉花括号，同时会直接return函数体 
     const arrowFn3 = x => x
     arrowFn3(1)
 
