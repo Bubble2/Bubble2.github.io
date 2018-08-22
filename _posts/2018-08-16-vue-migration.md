@@ -16,13 +16,13 @@ author:     "guozhaodong"
 
 1. 1.0的相关文档不怎么好找，也不全（包括`vue`,`vuex`,`vue-router`，还有其它用到的一些插件）
 
-2. 新版本的东西不能用，已经后续如果再有更新升级会更困难
+2. 如果不升级新的东西不能用，而且后续如果再升级，难度会跟大些
 
-3. 通过升级过程，自己也去更加熟悉下`vue`和项目业务等
+3. 通过升级过程，自己也去更加熟悉下`vue`以及项目中的代码和业务等
 
 看了下官网有提供迁移的文档，[文档点这里](https://cn.vuejs.org/v2/guide/migration.html)，里面提供了`vue`、`vuex`、`vue-router`升级之后变化的`api`，同时还提供了一个命令行工具`vue-migration-helper`，可以用于检测你的项目中有哪些`api`是需要去升级的。
 
-## 升级`node_modules`依赖包
+## 升级`package.json`中的依赖包
 
 `vue`  `^1.0.21` => `^2.5.16`
 
@@ -308,7 +308,7 @@ export default {
     </template>
 ```
 
-### 5、 升级之后需要如果不引入完整版`vue`的话，默认只包含运行时版本，不包含编译器，这就会导致编译模板报错
+### 5、 升级之后如果不引入完整版`vue`的话，默认只包含运行时版本，不包含编译器，这就会导致编译模板报错
 
 `[Vue warn]: You are using the runtime-only build of Vue where the template option is not available. Either pre-compile the templates into render functions, or use the compiler-included build`
 
