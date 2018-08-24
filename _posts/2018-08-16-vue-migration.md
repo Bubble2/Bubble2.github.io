@@ -136,7 +136,7 @@ author:     "guozhaodong"
 删除`vuex/actions/home.js`这个文件
 
 `vuex/modules/home.js`
-```javascript
+``` JavaScript
     const state = {
         ...
     }
@@ -162,7 +162,7 @@ author:     "guozhaodong"
 
 不过我们可以通过在组件里面调用`actions`的时候把`$router`传进去。
 
-```javascript
+``` JavaScript
     const actions = {
         logOut(context, $router){
             login.logOut().then(response => {
@@ -258,7 +258,7 @@ export default {
 升级之后，如果从后端异步请求过来的数据层级比较深，需要做非空判断，不然页面加载完成，数据还没有返回过来时候会报错。
 
 父组件
-```html
+```HTML
     <template>
         <div>
             <order detail="detail"></order>
@@ -278,7 +278,7 @@ export default {
 ```
 
 子组件`app/business/order.vue`
-```html
+```HTML
     <template>
         <div class="hd">{{detail.order.title}}</div>
         <div class="bd">
@@ -300,7 +300,7 @@ export default {
 
 此时我们可以在父组件传给子组件属性的时候用`v-if`进行判断，如果detail是个空对象就不进行渲染
 
-```html
+```HTML
     <template>
         <div>
             <order detail="detail" v-if="Object.keys(detail).length > 0"></order>

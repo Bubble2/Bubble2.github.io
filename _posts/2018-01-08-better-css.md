@@ -14,7 +14,7 @@ author:     "guozhaodong"
 
 > 以下为`margin`的栗子，`padding`相同。
 
-``` css
+``` CSS
 margin:10px 10px 10px 10px = margin:10px
 
 margin:10px 5px 10px 5px = margin:10px 5px
@@ -27,7 +27,7 @@ margin:10px 5px 15px 5px = margin:10px 5px 15px
 
 上面的`padding`可以简写成
 
-``` css
+``` CSS
 padding:21px 25px 0 28px;
 ```
 
@@ -35,7 +35,7 @@ padding:21px 25px 0 28px;
 
 6位十六进制颜色值如果每两位相同的话，可以简写一半
 
-``` css
+``` CSS
 #ffffff = #fff
 
 #ff00ee = #f0e
@@ -57,7 +57,7 @@ padding:21px 25px 0 28px;
 
 上面的文字超出指定宽度出现省略号的效果也有现成的`mixin`
 
-``` css
+``` CSS
 @mixin textclip($maxWidth){
     max-width:$maxWidth;
     overflow:hidden;
@@ -110,7 +110,7 @@ h3{
 
 ![image](/assets/img/better-css/8.png)
 
-``` scss
+``` Sass
 //bad
 
 .widget-floor-tp4-style4{
@@ -170,7 +170,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 1、对于一个`class`需要写哪些`css`属性，有的人可能会搞不太清楚,下面我来把基本的属性罗列一下；书写的顺序最好也按照下面的这种顺序去写。
 
-``` css
+``` CSS
     .box{
         /*定位相关属性*/
         position:absolute;
@@ -230,7 +230,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 先看下`html`结构
 
-``` html
+``` HTML
     <div class="widget-floor-tp3-style1">
     
     </div>
@@ -243,7 +243,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 ```
 
 如果这个边距全部用下外边距或者上外边距，如图10
-``` css
+``` CSS
     .widget-floor-tp3-style1{
         margin-bottom:40px;
     }
@@ -265,7 +265,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 那么只能使用`padding`来实现，如图11
 
-``` css
+``` CSS
     .widget-floor-tp3-style1{
         padding:20px 0;
     }
@@ -290,7 +290,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 那么我们可以把上边距调小，下边距增大，如图13
 
-``` css
+``` CSS
     .widget-floor-tp3-style1{
         padding:10px 0 30px;
     }
@@ -314,7 +314,7 @@ css3又定义了一种盒模型`box-sizing:border-box`，这种盒模型的处�
 
 ![image](/assets/img/better-css/14.png)
 
-``` css
+``` CSS
     //bad
 
     {

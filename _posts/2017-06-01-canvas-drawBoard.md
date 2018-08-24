@@ -13,7 +13,7 @@ author:     "guozhaodong"
 <a href="https://codepen.io/Bubble2/pen/qyzbEM" target="_blank">demo预览</a>
 
 html：
-```html
+```HTML
 <!doctype html>
 <html>
     <head>
@@ -92,7 +92,7 @@ html：
 ```
 
 style.css：
-``` css
+``` CSS
 *{
     margin:0;
     padding:0;
@@ -261,7 +261,7 @@ ul,li{
 
 drawBoard.js：
 
-``` javascript
+``` JavaScript
 function DrawBoard(){
     this.oCanvas=document.getElementById("canvas");
       this.oCxt=this.oCanvas.getContext("2d");
