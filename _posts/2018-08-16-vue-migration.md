@@ -48,7 +48,7 @@ author:     "guozhaodong"
 (1)、从`vuex`中获取`state`和`actions`的方式变了，之前是通过构造函数的`vuex`选项参数来获取的，[api参考链接](https://github.com/vuejs/vuex/blob/1.0/docs/zh-cn/state.md)，现在是通过`mapState`和`mapActions`这两个辅助函数来获取的，然后直接放在`computed`和`methods`上面，相当于把它们都变成了`vue`的实例属性。
 
 先看下老代码
-``` javascript
+``` JavaScript
     import dataPicker from  './data_pick.vue'
     import {getHome} from '../../vuex/actions/home'
     import {hideNoData, hideLoading} from '../../vuex/actions/app'
@@ -75,7 +75,7 @@ author:     "guozhaodong"
 
 升级后的代码
 
-``` javascript
+``` JavaScript
     import {mapState, mapActions} from 'vuex'
     import dataPick from './data_pick.vue'
     export default {
@@ -108,7 +108,7 @@ author:     "guozhaodong"
 升级前的代码
 
 `vuex/actions/home.js`
-``` javascript
+``` JavaScript
     export const getHome = (store) => {
         store.dispatch(types.HIDE_NODATA);
         ...
@@ -116,7 +116,7 @@ author:     "guozhaodong"
 ```
 
 `vuex/modules/home.js`
-``` javascript
+``` JavaScript
     const state = {
         ...
     }
@@ -180,7 +180,7 @@ author:     "guozhaodong"
 ### 2、路由的`data`钩子方法替换问题
 
 先看下之前的代码
-``` javascript
+``` JavaScript
     export default {
         route: {
             data(){
@@ -192,7 +192,7 @@ author:     "guozhaodong"
 
 官网上给出了`data`替换的方法，是通过`watch`去监测`$route`的变化
 
-``` javascript
+``` JavaScript
  export default {
      watch: {
          '$route': 'fetchData'
@@ -209,7 +209,7 @@ author:     "guozhaodong"
 
 后来研究了`vue-router`里组件内的守卫，发现有一个方法可以满足要求，`beforeRouteEnter`这个方法，这个方法虽然不能获取组件实例`this`，但是它有一个回调函数，在里面可以获取组件实例
 
-``` javascript
+``` JavaScript
 export default {
     beforeRouterEnter(to, from, next){
         next(vm => {
@@ -226,7 +226,7 @@ export default {
 
 还有一个问题是，如果是同一个路由只是切换参数，`beforeRouterEnter`是不会触发的，这个时候可以再加一个`beforeRouterUpdate`，这个方法只会在当前路由改变，但是该组件被复用时调用。
 
-``` javascript
+``` JavaScript
 export default {
     beforeRouterEnter(to, from, next){
         next(vm => {
@@ -315,7 +315,7 @@ export default {
 如果发现报上面这行警告是因为升级后当你通过`import vue from 'vue'`引入的其实是运行时的版本，是不包含编译器的，如果你使用`webpack`，此时我们可以通过
 配置下让其默认引用的是完整版。
 
-``` javascript
+``` JavaScript
 resolve: {
   alias: {
     vue: 'vue/dist/vue.esm.js'
