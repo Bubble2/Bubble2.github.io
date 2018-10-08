@@ -11,7 +11,7 @@ author:     "guozhaodong"
 
 ## 为什么会出现`redux`？
 
-通过前面的`React`的课程我们了解到，**`React`通过组件状态(`state`)的变化来更新组件对应的用户界面**，这些状态可能包括服务器的数据、缓存数据、本地生成尚未持久化到服务器的数据，也包括`UI`的状态，如激活的路由、被选中的标签、是否显示加载中效果等等。
+通过前面的`React`的课程我们了解到，**`React`通过组件状态(`state`)的变化来更新对应的用户界面**，这些状态可能包括服务器的数据、缓存数据、本地生成尚未持久化到服务器的数据，也包括`UI`的状态，如激活的路由、被选中的标签、是否显示加载中效果等等。
     
 当项目比较小或者业务比较简单的时候，通过单纯地`javascript`去管理它们还是能应付得过来的，但是如果项目变得庞大且复杂的时候，我们去**管理这些状态就会变得非常困难**。而且我们**没有办法去追踪这些状态的变化**。
 
@@ -28,7 +28,7 @@ author:     "guozhaodong"
 
 ### `action`
 
-`action`是一个普通对象，必须包含`type`属性，其它属性一般就是进行操作需要的数据。
+`action`就是一个行为的指令，用来描述将要对`state`进行什么样的操作。它是一个普通对象，必须包含`type`属性，其它属性一般就是进行操作需要的数据。
 
 `action`：
 ``` JavaScript
@@ -51,7 +51,7 @@ author:     "guozhaodong"
 
 ### `reducer`
 
-`reducer`是一个纯函数，接受两个参数，第一个参数是旧的`state`，第二个参数是`action`对象；函数体是根据`action.type`的值进行相应的操作，然后返回一个新的`state`。
+`reducer`是用来具体操作和改变`state`的方法。它是一个纯函数，接受两个参数，第一个参数是旧的`state`，第二个参数是`action`对象；函数体是根据`action.type`的值进行相应的操作，然后返回一个新的`state`。
 
 `reducer`：
 ```JavaScript
@@ -111,11 +111,9 @@ const store = createStore(combineReducers({countNum}))
 //订阅react渲染方法
 store.subscribe(render);
 
-render()
-function render(){
-    ReactDOM.render(<Counter store={store}/>,
+ReactDOM.render(<Counter store={store}/>,
         document.getElementById('root'))
-}
+
 ```
 
 `Counter.js`
@@ -162,8 +160,9 @@ class Counter extends Component {
     const {getState} = this.props.store
     return (
       <div className="wrap">
+        <p>demo1</p>
         <button onClick={this.handleReduce}>-</button>
-        <span>{getState()}</span>
+        <span>{getState().countNum}</span>
         <button onClick={this.handleAdd}>+</button>
       </div>
     );
@@ -171,6 +170,7 @@ class Counter extends Component {
 }
 
 export default Counter;
+
 ```
 
 ### 使用`react-redux`来连接`redux`和`react`
@@ -188,11 +188,13 @@ npm install --save react-redux
 之前我们把`store`作为属性传递给我们的`Counter`组件，如果组件比较简单还能勉强应付，但是如果状态比较多，且组件层级比较深，难道我们要把这些东西直接都放在属性上传递到子组件吗？而且如果组件层级比较深，难道要一级一级地向下传递？
 
 
-不必这么费事，`react-redux`帮我们解决了这些问题，它提供了两个
+不必这么费事，`react-redux`帮我们解决了这些问题，它提供了两个方法
 
 
 #### `connect()`
-`connect()`方法，这个方法接受四个可选参数`mapStateToProps`、`mapDispatchToProps`、`mergeProps`、`options`，这边只给大家讲前面两个参数，
+`connect()`方法是用来将指定的`state`和指定的`action`传递到`React`组件中。
+
+这个方法接受四个可选参数`mapStateToProps`、`mapDispatchToProps`、`mergeProps`、`options`，这边只给大家讲前面两个参数，
 
 `mapStateToProps(state, [ownProps])`：用来从`store`中获取`state`。
 
