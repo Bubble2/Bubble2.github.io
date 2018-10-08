@@ -98,7 +98,7 @@ author:     "guozhaodong"
 ## `搭配react来个小栗子热下身`
 
 `CounterApp.js`
-``` javascript
+``` JavaScript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, combineReducers} from 'redux';
@@ -119,7 +119,7 @@ function render(){
 ```
 
 `Counter.js`
-``` javascript
+``` JavaScript
 import React, { Component } from 'react';
 
 //action
@@ -254,7 +254,7 @@ document.getElementById('root'))
 ```
 
 `Counter.js`
-``` javascript
+``` JavaScript
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
