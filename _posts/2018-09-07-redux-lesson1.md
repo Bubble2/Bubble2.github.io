@@ -95,7 +95,7 @@ author:     "guozhaodong"
 
 用户`dispatch(action)` => `reducer`更新`state` => 页面重新渲染
 
-## `搭配react来个小栗子热下身`
+## `搭配react来个小栗子热下身`，[demo请点这里](https://github.com/Bubble2/redux-lesson-demo/tree/master/demo1)
 
 `CounterApp.js`
 ``` JavaScript
@@ -235,7 +235,7 @@ npm install --save react-redux
 #### `Provider()`
 `Provider()`这个方法可以使得各个层级的组件的`connect()`方法能够获取到`store`对象
 
-我们用`react-redux`来改造下`Counter`的代码
+我们用`react-redux`来改造下`Counter`的代码，[demo请点这里](https://github.com/Bubble2/redux-lesson-demo/tree/master/demo2)
 
 `CounterApp.js`
 ```JavaScript
