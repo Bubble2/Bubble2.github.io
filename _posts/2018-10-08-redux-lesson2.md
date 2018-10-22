@@ -71,6 +71,10 @@ author:     "guozhaodong"
 ```
 上面代码对`store.dispatch`进行了重定义，在发送`action`前后添加了打印功能，这是中间件的雏形。
 
+加了中间件后我们再来看下`redux`的数据流
+
+![image](/assets/img/redux/redux-flow-middleware.jpg)
+
 #### 关于中间件的使用
 
 中间件有很多，市面上有很多别人已经写好的，当然你也可以自己去写。比如`redux-logger`、`redux-thunk`
@@ -107,6 +111,10 @@ author:     "guozhaodong"
 感兴趣地可以去看下它的源码
 
 ``` JavaScript
+/**
+ * @param {...Function} middlewares The middleware chain to be applied.
+ * @returns {Function} A store enhancer applying the middleware.
+ */
 export default function applyMiddleware(...middlewares) {
   return createStore => (...args) => {
     const store = createStore(...args)
@@ -132,9 +140,31 @@ export default function applyMiddleware(...middlewares) {
 }
 
 ```
-加了中间件后我们再来看下`redux`的数据流
 
-![image](/assets/img/redux/redux-flow-middleware.jpg)
+```JavaScript
+/**
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */
+
+export default function compose(...funcs) {
+  if (funcs.length === 0) {
+    return arg => arg
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0]
+  }
+
+  return funcs.reduce((a, b) => (...args) => a(b(...args)))
+```
+
+## `Immutable`数据
+
+
+
 
 
 
