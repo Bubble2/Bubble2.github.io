@@ -17,20 +17,17 @@ author:     "guozhaodong"
 
 **方法一：**
 
-也是最原始的做法，我们可以在`UI`组件中去发起异步请求，然后在数据返回的回调函数中去`dispatch(action)`，
+也是最原始的做法，我们可以在`UI`组件中去发起异步请求，然后在数据返回的回调函数中去`dispatch(action)`。
+
+[栗子请戳这里](https://github.com/Bubble2/redux-lesson-demo/tree/master/demo3)
 
 优点： 简单易行。
 
 缺点： 这样做会把`view`层和`model`层混杂在一起，耦合度太高，后期维护起来很困难。
 
-[栗子请戳这里](https://github.com/Bubble2/redux-lesson-demo/tree/master/demo3)
-
 **方法二：**
 
 把它放在`redux`数据流的某一个环节中，使用中间件，可以先来看下[中间件](#中间件)。
-
-优点：`view`层和`model`层相互独立，易于后期代码的维护和扩展。
-缺点：需要引入中间件，操作起来麻烦些
 
 目前市面上有多款中间件，比如`redux-thunk`，`redux-promise`，`redux-saga`等都可以解决异步数据的问题。
 
@@ -56,6 +53,9 @@ author:     "guozhaodong"
 
 [栗子请戳这里](https://github.com/Bubble2/redux-lesson-demo/tree/master/demo4)
 
+优点：`view`层和`model`层相互独立，易于后期代码的维护和扩展。
+
+缺点：需要引入中间件，操作起来麻烦些。
 
 ## 中间件
 
@@ -93,7 +93,6 @@ author:     "guozhaodong"
 
 `createStore`方法它可以传递三个参数，第一个参数是一个`reducer`，第二个参数是初始状态，第三个参数是一个`store`的增强器，也可以是我们的中间件
 
-
 ``` JavaScript
     createStore(
         reducer,
@@ -108,60 +107,9 @@ author:     "guozhaodong"
     applyMiddleware(...middlewares);
 ```
 
-感兴趣地可以去看下它的源码
-
-``` JavaScript
-/**
- * @param {...Function} middlewares The middleware chain to be applied.
- * @returns {Function} A store enhancer applying the middleware.
- */
-export default function applyMiddleware(...middlewares) {
-  return createStore => (...args) => {
-    const store = createStore(...args)
-    let dispatch = () => {
-      throw new Error(
-        `Dispatching while constructing your middleware is not allowed. ` +
-          `Other middleware would not be applied to this dispatch.`
-      )
-    }
-
-    const middlewareAPI = {
-      getState: store.getState,
-      dispatch: (...args) => dispatch(...args)
-    }
-    const chain = middlewares.map(middleware => middleware(middlewareAPI))
-    dispatch = compose(...chain)(store.dispatch)
-
-    return {
-      ...store,
-      dispatch
-    }
-  }
-}
-
-```
-
-```JavaScript
-/**
- * @param {...Function} funcs The functions to compose.
- * @returns {Function} A function obtained by composing the argument functions
- * from right to left. For example, compose(f, g, h) is identical to doing
- * (...args) => f(g(h(...args))).
- */
-
-export default function compose(...funcs) {
-  if (funcs.length === 0) {
-    return arg => arg
-  }
-
-  if (funcs.length === 1) {
-    return funcs[0]
-  }
-
-  return funcs.reduce((a, b) => (...args) => a(b(...args)))
-```
-
 ## `Immutable`数据
+
+[请点击这里](https://bubble2.github.io/2017/09/07/immutable.html)
 
 
 
