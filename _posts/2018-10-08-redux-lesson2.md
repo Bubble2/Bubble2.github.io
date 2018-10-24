@@ -109,7 +109,9 @@ author:     "guozhaodong"
 
 ## `Immutable`数据
 
-[请点击这里](https://bubble2.github.io/2017/09/07/immutable.html)
+上面栗子改写成`Immutable`数据形式，[demo点这里](https://github.com/Bubble2/redux-lesson-demo/tree/master/demo5)
+
+[Immutable详细请点击这里](https://bubble2.github.io/2017/09/07/immutable.html)
 
 
 
