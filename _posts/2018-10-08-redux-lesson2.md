@@ -75,6 +75,8 @@ author:     "guozhaodong"
 
 ![image](/assets/img/redux/redux-flow-middleware.jpg)
 
+当我们加入中间件之后，我们`dispatch`一个`action`，这个时候真正执行的是被中间件修改过的`dispatch`，就类似上面栗子的`dispatchAndLog`方法，然后会执行中间件的操作，所有中间件的操作都指向完毕了，最后才会执行原始的`dispatch(action)`。
+
 #### 关于中间件的使用
 
 中间件有很多，市面上有很多别人已经写好的，当然你也可以自己去写。比如`redux-logger`、`redux-thunk`
