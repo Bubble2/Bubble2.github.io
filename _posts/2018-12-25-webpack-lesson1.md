@@ -336,20 +336,93 @@ module.exports = {
 
 数组的每一项里面就代表对于一种规则类型的资源怎么去转化或者处理它，
 
+条件规则：
+
 `test`：匹配特定条件的资源，一般是一个正则表达式。
 
 `include`：匹配特定条件的目录，用于缩小查找的范围，表示在该目录里面查找，一般是一个正则或者一个函数。
 
 `exclude`：匹配特定条件的目录，用于缩小查找的范围，表示查找时排除该目录，一般是一个正则或者一个函数。
 
-`use`：将我们匹配到的资源使用指定的`loader`
+应用规则：
+
+`use`：将我们匹配到的资源使用指定的`loader`，这边的会稍微复杂一点，书写的形式比较多，常用的形式有以下几种
+
+```JavaScript
+
+//一个loader，同时有options等其它属性
+{
+    test: /\.(png|jpg|gif|jpeg)$/,
+    use: {
+        loader: 'url-loader',
+        options: {
+            limit: 8192,
+            name: '[name].[hash:8].[ext]'
+        }
+    }
+}
+
+
+//多个loader，同时有options等其它属性
+{
+    test:/\.scss$/,
+    use: [
+        {
+            loader: 'style-loader',
+            options: {
+                sourceMap: true
+            }
+        },
+        {
+            loader: 'css-loader',
+            options: {
+                sourceMap: true
+            }
+        },
+        {
+            loader: 'sass-loader',
+            options: {
+                sourceMap: true
+            }
+        }
+    ]
+}
+
+//一个或多个loader，没有其它属性
+{
+    test:/\.scss$/,
+    use: ['style-loader', 'css-loader', 'sass-loader']
+}
 
 ```
 
+关于`loader`的具体配置请参考不同`loader`的配置文档。
 
 ### 插件（plugins）
 
-## 安装和使用
+插件可以提供各种方式来自定义我们的构建过程，一般`loader`完成不了的都交给`plugins`来做，有时候也需要两者配合起来完成一个功能。
+
+`webpack`内置了各种插件，同时社区中也有很多精选的插件可以供我们使用，如果还是满足不了我们的需求，也可以自己去写插件，当然这个需要我们对`webpack`的原理有深入地理解。
+
+``` JavaScript
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    plugins: [
+        new webpack.BannerPlugin('Hello World'),
+        new HtmlWebpackPlugin({
+            title: 'demo4',
+            filename: 'index.html',
+            template: 'src/index.html'
+        })
+    ]
+}
+```
+
+上面使用了一个`BannerPlugin`，它是`webpack`内置的插件，用来在我们打包后的代码头部添加一些标记信息。
+
+
+`html-webpack-plugin`是用来生成`html`页面的，在`webpack`里`js`是一级公民，所以`html`也是可以通过`js`来生成的，所有东西都依赖入口`js`。
 
 
 
