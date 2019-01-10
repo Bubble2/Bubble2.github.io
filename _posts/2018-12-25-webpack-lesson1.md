@@ -199,7 +199,7 @@ module.exports = {
 > 1. 对象形式，对象的每一个`key`就是这个`bundle`的名称。
 > 2. 字符串形式或者数组形式，`bundle`的名称就是默认的名称`main`。
 
-
+[`entry`示例代码点这里看](https://github.com/Bubble2/webpack4-share-demo/tree/master/demo1)
 
 ### 输出（output）
 
@@ -265,6 +265,9 @@ module.exports = {
 
 //打包后输出 dist/index.bundle.js
 ```
+
+[`output`示例代码点这里看](https://github.com/Bubble2/webpack4-share-demo/tree/master/demo2)
+
 
 ### loader
 
@@ -398,6 +401,10 @@ module.exports = {
 
 关于`loader`的具体配置请参考不同`loader`的配置文档。
 
+
+[`loader`示例代码点这里看](https://github.com/Bubble2/webpack4-share-demo/tree/master/demo3)
+
+
 ### 插件（plugins）
 
 插件可以提供各种方式来自定义我们的构建过程，一般`loader`完成不了的都交给`plugins`来做，有时候也需要两者配合起来完成一个功能。
@@ -423,6 +430,9 @@ module.exports = {
 
 
 `html-webpack-plugin`是用来生成`html`页面的，在`webpack`里`js`是一级公民，所以`html`也是可以通过`js`来生成的，所有东西都依赖入口`js`。
+
+[`plugins`示例代码点这里看](https://github.com/Bubble2/webpack4-share-demo/tree/master/demo4)
+
 
 
 
