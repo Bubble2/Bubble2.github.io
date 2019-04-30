@@ -8,7 +8,7 @@ author: 'guozhaodong'
 
 # webpack 新手入门-实战篇
 
-> 下面实例为`webpack 4.x` | `babel 7.x`
+> 下面实例版本为`webpack 4.x`
 
 ## 常用`loader`使用介绍
 
