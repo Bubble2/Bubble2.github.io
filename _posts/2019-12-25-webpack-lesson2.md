@@ -217,7 +217,8 @@ devServer: {
     host: '0.0.0.0', //如果你希望服务器外部可访问
     // hot: true, // 模块热替换,必须要配合webpack.HotModuleReplacementPlugin插件使用
     historyApiFallback: true, //当使用 HTML5 History API 时，任意的 404 响应都可能需要被替代为 index.html
-    publicPath: '/',
+    publicPath: '/',  //用来本地服务拦截带publicPath开头的请求的，和output的publicPath一致
+	contentBase: '/' //用来指定被访问html页面所在目录的
     ...
 },
 
