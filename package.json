@@ -15,5 +15,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "hexo-generator-baidu-sitemap": "^0.1.6",
+    "hexo-generator-sitemap": "^1.2.0"
+  }
 }
